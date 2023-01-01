@@ -12,7 +12,7 @@ def homepage():
 
 @app.route("/homepage2",methods=['POST','GET'])
 def homepage2():
-    resultadoVencimento = MudarVen(vAtual = request.form.get('vencimentoAtual'), vNovo=request.form.get('vencimentoNovo'), vPlano= request.form.get('planoClinte'))
+    resultadoVencimento = MudarVen(vAtual = request.form.get('vencimentoAtual'), vNovo=request.form.get('vencimentoNovo'), vPlano= request.form.get('planoCliente'))
 
     return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
 
@@ -408,7 +408,7 @@ def MudarVen(vAtual, vNovo,vPlano):
         Valor = Qtd * globals()[f"plan{vPlano}"]()
         r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
         return r
-    return "Hello"
+
 
 def venc(pVen, pAtual, pNovo):
         if pVen in ["5", "10"]:
@@ -417,8 +417,8 @@ def venc(pVen, pAtual, pNovo):
             return Calcularven2(pAtual, pNovo)  # VENCIMENTO 15 OU 20
         elif pVen in ["25", "30"]:
             return Calcularven3(pAtual, pNovo)  # VENCIMENTO 25 OU 30
-        else:
-            return "Hello"
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
