@@ -408,6 +408,7 @@ def MudarVen(vAtual, vNovo,vPlano):
         Valor = Qtd * globals()[f"plan{vPlano}"]()
         r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
         return r
+    return ""
 
 def venc(pVen, pAtual, pNovo):
         if pVen in ["5", "10"]:
@@ -417,7 +418,7 @@ def venc(pVen, pAtual, pNovo):
         elif pVen in ["25", "30"]:
             return Calcularven3(pAtual, pNovo)  # VENCIMENTO 25 OU 30
         else:
-            return "Opção de vencimento inválida"
+            return ""
 
 if __name__ == "__main__":
     app.run(debug=True)
