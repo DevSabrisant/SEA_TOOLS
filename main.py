@@ -360,7 +360,7 @@ def MudarVen(vAtual, vNovo,vPlano):
         r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
         return r
 
-    if (vAtual == '5' or vAtual == '10') and (vNovo == '15' or vNovo == '20'):
+    elif (vAtual == '5' or vAtual == '10') and (vNovo == '15' or vNovo == '20'):
         QtdDias = FinalVenc10 - IniVenc01
         Valor = QtdDias.days * globals()[f"plan{vPlano}"]()
         r = f"Do {vAtual} para {vNovo}: \n{IniVenc01Br} -- {FinalVenc10Br}. São {QtdDias.days} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc01Br} -- {date(data_hoje.year,data_hoje.month,10).strftime('%d/%m/%Y')}. São {QtdDias.days-30} dias -- totalizando: {(QtdDias.days-30) * globals()[f'plan{vPlano}']():.2f}"
@@ -408,7 +408,7 @@ def MudarVen(vAtual, vNovo,vPlano):
         Valor = Qtd * globals()[f"plan{vPlano}"]()
         r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
         return r
-    return ""
+    return "Hello"
 
 def venc(pVen, pAtual, pNovo):
         if pVen in ["5", "10"]:
@@ -418,7 +418,7 @@ def venc(pVen, pAtual, pNovo):
         elif pVen in ["25", "30"]:
             return Calcularven3(pAtual, pNovo)  # VENCIMENTO 25 OU 30
         else:
-            return ""
+            return "Hello"
 
 if __name__ == "__main__":
     app.run(debug=True)
