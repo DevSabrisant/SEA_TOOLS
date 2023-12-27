@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mudança de Vencimento</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            margin-right: 8px;
+        }
+
+        button:last-child {
+            margin-right: 0;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<img src="{{ url_for('static', filename='seatelecomimg.png') }}">
+
+<div class="container">
+    <form action="/homepage2" method="post">
+        <label for="vencimentoAtual">Vencimento Atual:</label>
+        <select id="vencimentoAtual" name="vencimentoAtual" required>
+            <option value="">Selecionar</option>
+            <option value="5">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+        </select>
+        <br>
+        <label for="vencimentoNovo">Vencimento Novo:</label>
+        <select id="vencimentoNovo" name="vencimentoNovo" required>
+            <option value="">Selecionar</option>
+            <option value="5">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+        </select>
+        <br>
+        <label for="planoClinte">Plano do Cliente:</label>
+        <select id="planoClinte" name="planoClinte" required>
+            <option value="">Selecionar</option>
+            <option value="250">Plano 250</option>
+            <option value="350">Plano 350</option>
+            <option value="450">Plano 450</option>
+            <option value="600">Plano 600</option>
+        </select>
+        <br>
+
+        <div class="button-container">
+            <button type="submit">Calcular</button>
+            <button type="button" onclick="copiarTexto()">Copiar</button>
+        </div>
+
+        <textarea id="resutadoVencimento" name="resutadoVencimento" rows="4" readonly>{{ resultadoVencimento }}</textarea>
+
+        <button type="button" onclick="trocarPagina()">VOLTAR PARA -> Mudança de Plano</button>
+    </form>
+
+    <script>
+        function trocarPagina() {
+            window.location.href = "/";
+        }
+
+        function copiarTexto() {
+            var textarea = document.getElementById('resutadoVencimento');
+            textarea.select();
+            document.execCommand('copy');
+        }
+    </script>
+
+</div>
+
+</body>
+</html>
