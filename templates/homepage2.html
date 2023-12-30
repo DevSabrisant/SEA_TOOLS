@@ -23,18 +23,22 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Alterado para flex-start para alinhar à esquerda */
         }
 
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
         }
 
         label {
             margin-bottom: 8px;
             font-weight: bold;
-            color: #2c3e50; /* Cor do texto */
+            color: #2c3e50;
         }
 
         select, textarea {
@@ -42,7 +46,7 @@
             padding: 12px;
             margin-bottom: 20px;
             box-sizing: border-box;
-            border: 1px solid #bdc3c7; /* Cor da borda */
+            border: 1px solid #bdc3c7;
             border-radius: 6px;
             font-size: 16px;
         }
@@ -54,7 +58,7 @@
         }
 
         button {
-            background-color: #3498db; /* Cor de fundo do botão */
+            background-color: #3498db;
             color: white;
             padding: 14px 20px;
             border: none;
@@ -71,7 +75,7 @@
         }
 
         button:hover {
-            background-color: #2980b9; /* Cor de fundo do botão ao passar o mouse */
+            background-color: #2980b9;
         }
 
         img {
@@ -87,7 +91,25 @@
             font-size: 16px;
         }
 
+        .checkbox-container {
+            display: flex;
+            justify-content: flex-start; /* Alterado para flex-start para alinhar à esquerda */
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%; /* Adicionado para garantir largura total */
+        }
     </style>
+    <script>
+        function trocarPagina() {
+            window.location.href = "/";
+        }
+
+        function copiarTexto() {
+            var textarea = document.getElementById('resultadoVencimento');
+            textarea.select();
+            document.execCommand('copy');
+        }
+    </script>
 </head>
 <body>
 
@@ -125,6 +147,10 @@
             <option value="450">Plano 450</option>
             <option value="600">Plano 600</option>
         </select>
+        <div class="checkbox-container">
+            <label for="cidadeAnanindeua" style="margin-right: 10px;">Cliente de Ananindeua:</label>
+            <input type="checkbox" id="cidadeAnanindeua" name="cidadeAnanindeua">
+        </div>
 
         <div class="button-container">
             <button type="submit">Calcular</button>
@@ -136,17 +162,7 @@
         <button type="button" onclick="trocarPagina()">VOLTAR PARA -> Mudança de Plano</button>
     </form>
 
-    <script>
-        function trocarPagina() {
-            window.location.href = "/";
-        }
 
-        function copiarTexto() {
-            var textarea = document.getElementById('resultadoVencimento');
-            textarea.select();
-            document.execCommand('copy');
-        }
-    </script>
 
 </div>
 
