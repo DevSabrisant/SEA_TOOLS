@@ -449,21 +449,24 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
             FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
 
             Valor = DadosVenB[0][Contador] * globals()[f"plan{vPlano}"]()
-            ValorProximo = (int(vAtual) - int(vNovo)) * globals()[f'plan{vPlano}']()
-            MensagemFatura = f"Deve ser adicionada na proxima fatura"
+            ValorDiferenca = (int(vNovo) - int(vAtual)) * globals()[f'plan{vPlano}']()
+            MensagemFatura = f"DEVE SER ADICIONADO NA PROXIMA FATURA"
 
             if vAtual == vNovo:
                     r = f"NÃO TERÁ ALTERAÇÃO NA FATURA!"
             else:
                 if f:=int(vAtual) < int(vNovo):
-                    r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor-Valor*0.1:.2f}\nDesconto de: {Valor * 0.1:.2f} -- {f}"
-                else:
-                    FinalVencMaisProx = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, date.today().month, DadosVenA[0][1])
+                    FinalVencMaisProx = date(data_hoje.year, date.today().month, DadosVenA[0][1])
                     FinalVencMaisProxBr = FinalVencMaisProx.strftime("%d/%m/%Y")
-                    if ValorProximo < 50:
-                        r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor-Valor*0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vAtual) - int(vNovo)} dias -- totalizando: {ValorProximo:.2f} -- {MensagemFatura}\nTotal: {Valor+ValorProximo:.2f} -- desconto de 10%: {Valor+(ValorProximo*0.1):.2f}\nDesconto de: {Valor+ValorProximo-(Valor+(ValorProximo*0.1)):.2f}"
-                    else:
-                        r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor-Valor*0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {ValorProximo:.2f}\nCom desconto de 10%: {DadosVenB[0][Contador]-(DadosVenB[0][Contador]*0.1):.2f}\nDesconto de: {DadosVenB[0][Contador] * 0.1:.2f}"
+
+                    if (IniVenc.day < DadosVenA[0][1]):
+                        if ValorDiferenca < 50:
+                            r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\n{MensagemFatura} \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vNovo) - int(vAtual)} dias -- totalizando: {ValorDiferenca:.2f}\nValor total: {Valor + ValorDiferenca:.2f}\nCom 10%: {Valor + (ValorDiferenca * 0.1):.2f}\nDesconto de: {Valor + ValorDiferenca - (Valor + (ValorDiferenca * 0.1)):.2f}"
+                        else:
+                            r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vNovo) - int(vAtual)} dias -- totalizando: {ValorDiferenca:.2f}\nCom desconto de 10%: {ValorDiferenca - (ValorDiferenca * 0.1):.2f}\nDesconto de: {ValorDiferenca * 0.1:.2f}"
+
+                else:
+                    r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}"
 
         return r
 
