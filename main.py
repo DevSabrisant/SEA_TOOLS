@@ -12,7 +12,7 @@ def homepage():
 
 @app.route("/homepage2",methods=['POST','GET'])
 def homepage2():
-    resultadoVencimento = MudarVen(vAtual = request.form.get('vencimentoAtual'), vNovo=request.form.get('vencimentoNovo'), vPlano= request.form.get('planoCliente'))
+    resultadoVencimento = MudarVen(vAtual = request.form.get('vencimentoAtual'), vNovo=request.form.get('vencimentoNovo'), vPlano= request.form.get('planoCliente'),checkA=request.form.get('cidadeAnanindeua'))
 
     return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
 
@@ -334,89 +334,149 @@ def CalculoA(pAtual,pNovo,pVen):
 # FUNÇÃO DE MUDANÇA DE VENICMENTO - TEM NADA HAVER COM OS CAULOS ACIMA
 def MudarVen(vAtual, vNovo,vPlano,checkA):
 
-    # QUANTIDADE DE DIAS NO MÊS
+    if not checkA:
+        # QUANTIDADE DE DIAS NO MÊS
 
-    quantidade_dias = calendar.monthrange(date.today().year, date.today().month)[1]
+        quantidade_dias = calendar.monthrange(date.today().year, date.today().month)[1]
 
-    # PROXIMO MÊS
+        # PROXIMO MÊS
 
-    ProxAtual = (data_hoje.month % 12) + 1
+        ProxAtual = (data_hoje.month % 12) + 1
 
-    # CICLO DE 01 ATÉ 30
+        # CICLO DE 01 ATÉ 30
 
-    IniVenc01 = date(date.today().year, date.today().month, 1)
-    IniVenc01Br = IniVenc01.strftime("%d/%m/%Y")
-    FinalVenc30 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, date.today().month, quantidade_dias)
-    FinalVenc30Br = FinalVenc30.strftime("%d/%m/%Y")
+        IniVenc01 = date(date.today().year, date.today().month, 1)
+        IniVenc01Br = IniVenc01.strftime("%d/%m/%Y")
+        FinalVenc30 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, date.today().month, quantidade_dias)
+        FinalVenc30Br = FinalVenc30.strftime("%d/%m/%Y")
 
-    # CICLO DE 11 ATÉ 10
+        # CICLO DE 11 ATÉ 10
 
-    IniVenc11 = date(date.today().year, date.today().month, 11)
-    IniVenc11Br = IniVenc11.strftime("%d/%m/%Y")
-    FinalVenc10 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (date.today().month % 12) + 1, 10)
-    FinalVenc10Br = FinalVenc10.strftime("%d/%m/%Y")
+        IniVenc11 = date(date.today().year, date.today().month, 11)
+        IniVenc11Br = IniVenc11.strftime("%d/%m/%Y")
+        FinalVenc10 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (date.today().month % 12) + 1, 10)
+        FinalVenc10Br = FinalVenc10.strftime("%d/%m/%Y")
 
-    # CICLO DE 21 ATÉ 20
+        # CICLO DE 21 ATÉ 20
 
-    IniVenc21 = date(date.today().year, date.today().month, 21)
-    IniVenc21Br = IniVenc21.strftime("%d/%m/%Y")
-    FinalVenc20 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (date.today().month % 12) + 1, 20)
-    FinalVenc20Br = FinalVenc20.strftime("%d/%m/%Y")
+        IniVenc21 = date(date.today().year, date.today().month, 21)
+        IniVenc21Br = IniVenc21.strftime("%d/%m/%Y")
+        FinalVenc20 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (date.today().month % 12) + 1, 20)
+        FinalVenc20Br = FinalVenc20.strftime("%d/%m/%Y")
 
-    # CONDIÇÕES DE TROCA DE VENCIMENTO
+        # CONDIÇÕES DE TROCA DE VENCIMENTO
 
-    if (vAtual == '5' or vAtual == '10') and (vNovo == '5' or vNovo == '10'):
-        r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+        if (vAtual == '5' or vAtual == '10') and (vNovo == '5' or vNovo == '10'):
+            r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+            return r
+
+        elif (vAtual == '5' or vAtual == '10') and (vNovo == '15' or vNovo == '20'):
+            QtdDias = FinalVenc10 - IniVenc01
+            Valor = QtdDias.days * globals()[f"plan{vPlano}"]()
+            r = f"Do {vAtual} para {vNovo}: \n{IniVenc01Br} -- {FinalVenc10Br}. São {QtdDias.days} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc01Br} -- {date(data_hoje.year,data_hoje.month,10).strftime('%d/%m/%Y')}. São {QtdDias.days-30} dias -- totalizando: {(QtdDias.days-30) * globals()[f'plan{vPlano}']():.2f}"
+            return r
+
+        elif (vAtual == '5' or vAtual == '10') and (vNovo == '25' or vNovo == '30'):
+            QtdDias = FinalVenc20 - IniVenc01
+            Valor = QtdDias.days * globals()[f"plan{vPlano}"]()
+            r = f"Do {vAtual} para {vNovo}: \n{IniVenc01Br} -- {FinalVenc20Br}. São {QtdDias.days} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc01Br} -- {date(data_hoje.year,data_hoje.month,20).strftime('%d/%m/%Y')}. São {QtdDias.days-30} dias -- totalizando: {(QtdDias.days-30) * globals()[f'plan{vPlano}']():.2f}"
+            return r
+
+        # VENCIMENTO 15 OU 20
+
+        elif (vAtual == '15' or vAtual == '20') and (vNovo == '15' or vNovo == '20'):
+            r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+            return r
+
+        elif (vAtual == '15' or vAtual == '20') and (vNovo == '25' or vNovo == '30'):
+            Qtd = 40
+            Valor = Qtd * globals()[f"plan{vPlano}"]()
+            r = f"Do {vAtual} para {vNovo}: \n{IniVenc11Br} -- {FinalVenc20Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc11Br} -- {date(data_hoje.year,data_hoje.month,20).strftime('%d/%m/%Y')}. São {Qtd-30} dias -- totalizando:  {(Qtd-30) * globals()[f'plan{vPlano}']():.2f}"
+            return r
+
+        elif (vAtual == '15' or vAtual == '20') and (vNovo == '5' or vNovo == '10'):
+            Qtd = 20
+            Valor = Qtd * globals()[f"plan{vPlano}"]()
+            r = f"Do {vAtual} para {vNovo}: \n{IniVenc11Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
+            return r
+
+        # VENCIMENTO 25 OU 30
+
+        elif (vAtual == '25' or vAtual == '30') and (vNovo == '25' or vNovo == '30'):
+            r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+            return r
+
+        elif (vAtual == '25' or vAtual == '30') and (vNovo == '15' or vNovo == '20'):
+            Qtd = 20
+            Valor = Qtd * globals()[f"plan{vPlano}"]()
+            r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
+            return r
+
+
+        elif (vAtual == '25' or vAtual == '30') and (vNovo == '5' or vNovo == '10'):
+            Qtd = 10
+            Valor = Qtd * globals()[f"plan{vPlano}"]()
+            r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
+            return r
+
+    else:
+        if (vAtual == "30") or (vNovo == "30"):
+            r = f"A CIDADE NÃO POSSUI ESSE VENCIMENTO!"
+        else:
+            DadosVenA = [(6, 5) if vNovo == "5"
+            else (11, 10) if vNovo == "10"
+            else (16, 15) if vNovo == "15"
+            else (21, 20) if vNovo == "20"
+            else (26, 25) if vNovo == "25"
+            else "None"]
+
+            DadosVenB = [(6, 5, 30, 35, 40, 45, 50) if vAtual == "5"
+            else (11, 10, 25, 30, 35, 40, 45) if vAtual == "10"
+            else (16, 15, 20, 25, 30, 35, 40) if vAtual == "15"
+            else (21, 20, 15, 20, 25, 30, 35) if vAtual == "20"
+            else (26, 25, 10, 15, 20, 25, 30) if vAtual == "25"
+            else "None"]
+
+            Contador = 2 if vNovo == "5" else 3 if vNovo == "10" else 4 if vNovo == "15" else 5 if vNovo == "20" else 6 if vNovo == "25" else "None"
+
+            # PROXIMO MÊS
+
+            ProxAtual = (data_hoje.month % 12) + 1
+
+            IniVenc = date(date.today().year, date.today().month, DadosVenB[0][0])
+            IniVencBr = IniVenc.strftime("%d/%m/%Y")
+            FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (date.today().month % 12) + 1, DadosVenA[0][1])
+            FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
+
+            Valor = DadosVenB[0][Contador] * globals()[f"plan{vPlano}"]()
+            ValorProximo = (int(vAtual) - int(vNovo)) * globals()[f'plan{vPlano}']()
+            MensagemFatura = f"Deve ser adicionada na proxima fatura"
+
+            if vAtual == vNovo:
+                    r = f"NÃO TERÁ ALTERAÇÃO NA FATURA!"
+            else:
+                if f:=int(vAtual) < int(vNovo):
+                    r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor-Valor*0.1:.2f}\nDesconto de: {Valor * 0.1:.2f} -- {f}"
+                else:
+                    FinalVencMaisProx = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, date.today().month, DadosVenA[0][1])
+                    FinalVencMaisProxBr = FinalVencMaisProx.strftime("%d/%m/%Y")
+                    if ValorProximo < 50:
+                        r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor-Valor*0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vAtual) - int(vNovo)} dias -- totalizando: {ValorProximo:.2f} -- {MensagemFatura}\nTotal: {Valor+ValorProximo:.2f} -- desconto de 10%: {Valor+(ValorProximo*0.1):.2f}\nDesconto de: {Valor+ValorProximo-(Valor+(ValorProximo*0.1)):.2f}"
+                    else:
+                        r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor-Valor*0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {ValorProximo:.2f}\nCom desconto de 10%: {DadosVenB[0][Contador]-(DadosVenB[0][Contador]*0.1):.2f}\nDesconto de: {DadosVenB[0][Contador] * 0.1:.2f}"
+
         return r
 
-    elif (vAtual == '5' or vAtual == '10') and (vNovo == '15' or vNovo == '20'):
-        QtdDias = FinalVenc10 - IniVenc01
-        Valor = QtdDias.days * globals()[f"plan{vPlano}"]()
-        r = f"Do {vAtual} para {vNovo}: \n{IniVenc01Br} -- {FinalVenc10Br}. São {QtdDias.days} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc01Br} -- {date(data_hoje.year,data_hoje.month,10).strftime('%d/%m/%Y')}. São {QtdDias.days-30} dias -- totalizando: {(QtdDias.days-30) * globals()[f'plan{vPlano}']():.2f}"
-        return r
-
-    elif (vAtual == '5' or vAtual == '10') and (vNovo == '25' or vNovo == '30'):
-        QtdDias = FinalVenc20 - IniVenc01
-        Valor = QtdDias.days * globals()[f"plan{vPlano}"]()
-        r = f"Do {vAtual} para {vNovo}: \n{IniVenc01Br} -- {FinalVenc20Br}. São {QtdDias.days} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc01Br} -- {date(data_hoje.year,data_hoje.month,20).strftime('%d/%m/%Y')}. São {QtdDias.days-30} dias -- totalizando: {(QtdDias.days-30) * globals()[f'plan{vPlano}']():.2f}"
-        return r
-
-    # VENCIMENTO 15 OU 20
-
-    elif (vAtual == '15' or vAtual == '20') and (vNovo == '15' or vNovo == '20'):
-        r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
-        return r
-
-    elif (vAtual == '15' or vAtual == '20') and (vNovo == '25' or vNovo == '30'):
-        Qtd = 40
-        Valor = Qtd * globals()[f"plan{vPlano}"]()
-        r = f"Do {vAtual} para {vNovo}: \n{IniVenc11Br} -- {FinalVenc20Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nVencimento mais proximo:\n{IniVenc11Br} -- {date(data_hoje.year,data_hoje.month,20).strftime('%d/%m/%Y')}. São {Qtd-30} dias -- totalizando:  {(Qtd-30) * globals()[f'plan{vPlano}']():.2f}"
-        return r
-
-    elif (vAtual == '15' or vAtual == '20') and (vNovo == '5' or vNovo == '10'):
-        Qtd = 20
-        Valor = Qtd * globals()[f"plan{vPlano}"]()
-        r = f"Do {vAtual} para {vNovo}: \n{IniVenc11Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
-        return r
-
-    # VENCIMENTO 25 OU 30
-
-    elif (vAtual == '25' or vAtual == '30') and (vNovo == '25' or vNovo == '30'):
-        r = f"Do {vAtual} para {vNovo}: \nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
-        return r
-
-    elif (vAtual == '25' or vAtual == '30') and (vNovo == '15' or vNovo == '20'):
-        Qtd = 20
-        Valor = Qtd * globals()[f"plan{vPlano}"]()
-        r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
-        return r
 
 
-    elif (vAtual == '25' or vAtual == '30') and (vNovo == '5' or vNovo == '10'):
-        Qtd = 10
-        Valor = Qtd * globals()[f"plan{vPlano}"]()
-        r = f"Do {vAtual} para {vNovo}: \n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd} dias -- totalizando: {Valor:.2f}"
-        return r
+
+
+
+
+
+
+
+
 
 # FUNÇÃO PARA SABER QUAL CALCULO SE DEVE USAR
 def venc(pVen, pAtual, pNovo,checkA):
@@ -424,8 +484,8 @@ def venc(pVen, pAtual, pNovo,checkA):
             return CalculoA(pAtual, pNovo,pVen)  # VENCIMENTO DE ANANINDEUA
         elif pVen in ["5", "10"]:
             return Calcularven1(pAtual, pNovo)  # VENCIMENTO 5 OU 10
-        elif pVen in ["15", "20","25","30"]:
-            return Calcularven2(pAtual, pNovo,pVen)  # VENCIMENTO 15 OU 20 / 25 OU 30
+        elif pVen in ["15", "20", "25", "30"]:
+            return Calcularven2(pAtual, pNovo, pVen)  # VENCIMENTO 15 OU 20 / 25 OU 30
 
 
 
