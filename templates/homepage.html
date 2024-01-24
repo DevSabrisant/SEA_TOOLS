@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
+    
     <title>Mudança de Plano</title>
+    
     <style>
+        *{
+            text-decoration: none;
+            color: #000;
+
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f3f3;
+            background-color: #11BFF5;
+            overflow: hidden;
+            
+           
+        }
+
+        .conteudo-principal{
             margin: 0;
             display: flex;
-            align-items: center;
+            align-items: center; 
             justify-content: center;
-            min-height: 100vh;
+           
         }
 
         .container {
             max-width: 600px;
             width: 100%;
+            margin-top: 50px;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
             display: flex;
-            flex-direction: column;
+            flex-direction: center;
             align-items: flex-start; /* Alterado para flex-start para alinhar à esquerda */
         }
 
@@ -58,7 +78,7 @@
         }
 
         button {
-            background-color: #4caf50;
+            background-color: #3498db;
             color: white;
             padding: 14px 20px;
             border: none;
@@ -75,17 +95,37 @@
         }
 
         button:hover {
-            background-color: #388e3c;
+            background-color: #2980b9;
         }
 
         img {
-            max-width: 60%;
-            height: auto;
-            display: block;
-            margin: 20px;
-            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 100%;
+            height: 250px;
+            margin: 10px;
+            border-radius: 20px;
         }
 
+      
+
+        #vencimentoNovo, #vencimentoAtual, #planoCliente{
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .imagens-laterais{
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 250px; /* Ajuste conforme necessário */
+            height: 100vh; /* Ajuste conforme necessário */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        
         textarea {
             resize: none;
             font-size: 16px;
@@ -97,6 +137,30 @@
             align-items: center;
             margin-bottom: 20px;
             width: 100%; /* Adicionado para garantir largura total */
+        }
+        .footer{
+            display: flex;
+            flex-direction: row;
+        }
+       
+       .links{
+        display: flex;
+        flex-direction: column;
+        font-family: julius sans one;
+        
+        
+       
+       }
+
+       #git{
+        opacity: 70%;
+        height: 55px;
+        width: 55px;
+        
+
+        }
+        #planoNovo, #planoAtual, #vencimento{
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         }
     </style>
     <script>
@@ -112,27 +176,30 @@
     </script>
 </head>
 <body>
-
-<img src="{{ url_for('static', filename='seatelecomimg.png') }}" alt="Logo">
-
+    <header>
+           <div class="imagens-laterais">
+               <img src="{{ url_for('static', filename='seatelecomimg.png') }}" alt="Logo"> 
+            </div> 
+           </header>
+<main class='conteudo-principal'>
 <div class="container">
     <form action="/" method="post">
         <label for="planoAtual">Plano Atual:</label>
         <select id="planoAtual" name="planoAtual" required>
             <option value="">Selecionar</option>
-            <option value="250">Plano 250</option>
-            <option value="350">Plano 350</option>
-            <option value="450">Plano 450</option>
+            <option value="500">Plano 500</option>
             <option value="600">Plano 600</option>
+            <option value="700">Plano 700</option>
+            <option value="800">Plano 800</option>
         </select>
 
         <label for="planoNovo">Plano Novo:</label>
         <select id="planoNovo" name="planoNovo" required>
             <option value="">Selecionar</option>
-            <option value="250">Plano 250</option>
-            <option value="350">Plano 350</option>
-            <option value="450">Plano 450</option>
+            <option value="500">Plano 500</option>
             <option value="600">Plano 600</option>
+            <option value="700">Plano 700</option>
+            <option value="800">Plano 800</option>
         </select>
 
         <label for="vencimento">Vencimento do Cliente:</label>
@@ -156,11 +223,25 @@
             <button type="button" onclick="copiarTexto()">Copiar</button>
         </div>
 
-        <textarea id="resultado" name="resultado" rows="4" readonly>{{ resultado }}</textarea>
+        <textarea id="resultado" name="resultado" rows="4" readonly>{{ resultado or 'Resultado' }}</textarea>
 
         <button type="button" onclick="trocarPagina()">IR PARA -> Mudança de Vencimento</button>
     </form>
 </div>
+</main>
+
+<div class = "footer">
+    <div class = "links">
+
+    <a href="https://github.com/CaioLir4">Caio Lira</a>
+      <a href="https://github.com/ewdson7">Ewdson Tiago</a>
+        <a href="https://github.com/DevSabrisant">Sabrina Santana</a>
+    </div>
+    <div>
+        <img id = "git" src="{{ url_for('static', filename='github.png') }}" alt="github">  
+    </div>
+</div>
+
 
 </body>
 </html>
