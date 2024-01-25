@@ -8,7 +8,7 @@
     <title>Mudança de Vencimento</title>
     <style>
 
-        *{
+       *{
             text-decoration: none;
             color: #000;
 
@@ -16,17 +16,17 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #11BFF5;
-            overflow: hidden;
-            
-           
+            overflow: auto;
+            height: 100%;
+         
         }
 
         .conteudo-principal{
-            margin: 0;
-            display: flex;
-            align-items: center; 
-            justify-content: center;
-           
+         display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 100px;
+       
         }
 
         .container {
@@ -38,10 +38,8 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
-            display: flex;
-            flex-direction: center;
-            align-items: flex-start; /* Alterado para flex-start para alinhar à esquerda */
-        }
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          }
 
         form {
             display: flex;
@@ -70,9 +68,11 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
+            gap: 10px;
         }
 
         button {
+            margin-top: 7px;
             background-color: #3498db;
             color: white;
             padding: 14px 20px;
@@ -93,62 +93,54 @@
             background-color: #2980b9;
         }
 
-        img {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-width: 100%;
-            height: 250px;  
-            margin: 10px;
-            border-radius: 20px;
+        img{
+            height: 280px;
+            width: 280px;
         }
 
-      
-
-        #vencimentoNovo, #vencimentoAtual, #planoCliente{
+        #vencimentoNovo, #vencimentoAtual, #planoCliente, select, textarea{
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         }
-
-        .imagens-laterais{
-            position: absolute;
-            left: 100px;
-            top: 0;
-            width: 250px; /* Ajuste conforme necessário */
-            height: 100vh; /* Ajuste conforme necessário */
+        .footer{
+            opacity: 80%;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            
             
         }
-        
-        textarea {
-            resize: none;
-            font-size: 16px;
+        .links{
+            text-decoration: none;
+            color: black;
         }
 
-        .checkbox-container {
-            display: flex;
-            justify-content: flex-start; /* Alterado para flex-start para alinhar à esquerda */
+        #git{
+            opacity: 80%;
+            height: 50px;
+            width: 50px;
+            margin-top: 20px;
+        }
+        @media screen and (max-width: 600px) {
+            .conteudo-principal{
+                display: flex;
+                flex-direction: column-reverse;
+             }
+             .container {
+                max-width: 80%;
+                }
+
+          img{
+            display: none;
+          }
+          #git{
+            display: none;
+          }
+          .footer{
             align-items: center;
-            margin-bottom: 20px;
-            width: 100%; /* Adicionado para garantir largura total */
-        }
-        .footer{
-            display: flex;
-            flex-direction: row;
-        }
-       
-       .links{
-        display: flex;
-        flex-direction: column;
-        font-family: julius sans one;
-       
-       }
-
-       #git{
-        opacity: 70%;
-        height: 55px;
-        width: 55px;
+            flex-direction: column;
+          }
+         
+         
         }
       
        
@@ -167,22 +159,17 @@
 </head>
 <body>
 
-    <header>
- <div class="sea"> 
-    <div class="imagens-laterais">
-        <img src="{{ url_for('static', filename='seatelecomimg.png') }}" alt="Logo"> 
-        
-    </div> 
-    
-</div>
-    </header>
+  
 
        
 
 
 <main class = "conteudo-principal">
+    <div class="imagens-laterais">
+        <img src="{{ url_for('static', filename='seatelecomimg.png') }}" alt="Logo"> 
+     </div> 
 <div class="container">
-    <form action="/homepage2" method="post">
+      <form action="/homepage2" method="post">
         <label for="vencimentoAtual">Vencimento Atual:</label>
         <select id="vencimentoAtual" name="vencimentoAtual" required>
             <option value="">Selecionar</option>
@@ -225,7 +212,7 @@
 
         <textarea id="resultadoVencimento" name="resultadoVencimento" rows="4" readonly>{{ resultadoVencimento or 'Resultado' }}</textarea>
 
-        <button type="button" onclick="trocarPagina()">VOLTAR PARA -> Mudança de Plano</button>
+        <button type="button" onclick="trocarPagina()">Mudança de Plano</button>
     </form>
 
 
@@ -236,15 +223,13 @@
 <div class = "footer">
     <div class = "links">
 
-    <a href="https://github.com/CaioLir4">Caio Lira</a>
-      <a href="https://github.com/ewdson7">Ewdson Tiago</a>
+    <a href="https://github.com/CaioLir4">Caio Lira |</a>
+      <a href="https://github.com/ewdson7">Ewdson Tiago |</a>
         <a href="https://github.com/DevSabrisant">Sabrina Santana</a>
     </div>
-    <div>
+
         <img id = "git" src="{{ url_for('static', filename='github.png') }}" alt="github">  
     </div>
-</div>
-
 
 
 </body>
