@@ -2,10 +2,15 @@
 from flask import Flask, render_template, request
 import calendar
 from datetime import date
+
 app = Flask(__name__)
 
 # LINKS PARA PAGINAS
-@app.route("/", methods=['POST', 'GET'])
+
+@app.route("/", methods=['POST','GET'])
+def Home():
+    return render_template('index.html')
+@app.route("/homepage", methods=['POST', 'GET'])
 def homepage():
     resultado = venc(pVen=request.form.get('vencimento'), pAtual=request.form.get('planoAtual'), pNovo=request.form.get('planoNovo'), checkA=request.form.get('cidadeAnanindeua'))
 
@@ -18,17 +23,33 @@ def homepage2():
     return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
 
 
+@app.route("/homepage3", methods=['POST','GET'])
+def homepage3():
+    resultadoDesc =  CalculoDesc(Plano = request.form.get('Plano'),D = request.form.get('D'), M = request.form.get('M'))
+    return render_template("homepage3.html", resultadoDesc = resultadoDesc)
 
 
 # PLANOS - CRIA UMA FUNÇÃO NOVA PARA UM PLANO NOVO
 def plan500():
-    return 110 / 30
+    global i
+    i = 110
+    r = 110/30
+    return round(r,2)
 def plan600():
-    return 130 / 30
+    global i
+    i = 130
+    r = 130/30
+    return round(r,2)
 def plan700():
-    return 160 / 30
+    global i
+    i = 160
+    r = 160/30
+    return round(r,2)
 def plan800():
-    return 210 / 30
+    global i
+    i = 210
+    r = 210/30
+    return round(r,2)
 
 data_hoje = date.today()  ##PEGANDO LOGO A DATA DE HOJE PRA SAPORRA TODA
 
@@ -356,6 +377,19 @@ def Calcularven3(pAtual, pNovo,pVen):
 
             return r
         
+def CalculoDesc(Plano,D,M):
+    if Plano == None:
+        r = 'Resultado'
+    else:
+        Valor_dia = globals()[f"plan{Plano}"]()
+        d =  float(D) * Valor_dia
+        m =  float(M) * Valor_dia/1440
+        Valor_Desc = d + m
+        Valor_Total = i - Valor_Desc
+
+        r = f"Solicitação de Desconto\nPlano: {Plano}\n\nDias: {D}\nMinutos: {M}\nDesconto de: {Valor_Desc:.2f}\nValor final da fatura: {Valor_Total:.2f}"
+
+    return r
 
 def CalculoA(pAtual,pNovo,pVen):
 
