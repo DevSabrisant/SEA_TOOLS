@@ -167,10 +167,9 @@
         }
     </style>
     <script>
-        function trocarPagina() {
-            window.location.href = "/homepage2";
+        function Home() {
+            window.location.href = "/";
         }
-
         function copiarTexto() {
             var textarea = document.getElementById('resultado');
             textarea.select();
@@ -228,7 +227,7 @@
 
         <textarea id="resultado" name="resultado" rows="4" readonly>{{ resultado or 'Resultado' }}</textarea>
 
-        <button type="button" onclick="trocarPagina()">IR PARA -> Mudança de Vencimento</button>
+        <button type="button" onclick="Home()">Voltar</button>
     </form>
 </div>
 </main>
