@@ -3,7 +3,6 @@ from Seatools.blueprints.swich_calculo import venc
 from Seatools.blueprints.mudar_venc import *
 from Seatools.blueprints.calculos import CalculoDesc
 
-
 Telas = Blueprint('Telas', __name__)
 
 @Telas.route("/", methods=['POST','GET'])

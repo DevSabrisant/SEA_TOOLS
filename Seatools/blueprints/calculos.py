@@ -10,9 +10,9 @@ def Calcularven1(pAtual, pNovo, pVen):
     if data_hoje.day != 1:
         # Se o dia atual não for o primeiro do mês
         Day = data_hoje.day - 1
-        DayPlAtual = globals()[f"plan{pAtual}"]() * (data_hoje.day - 1)
+        DayPlAtual = (globals()[f"plan{pAtual}"]()/30) * (data_hoje.day - 1)
         RestanteDayNovo = 31 - data_hoje.day
-        DayPlNovo = globals()[f"plan{pNovo}"]() * (31 - data_hoje.day)
+        DayPlNovo = (globals()[f"plan{pAtual}"]()/30) * (31 - data_hoje.day)
 
         ValorTotal = DayPlAtual + DayPlNovo
 
@@ -52,9 +52,9 @@ def Calcularven2(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             if data_hoje.day <= 10:
                 Day = data_hoje.day + 19
-                DayPlAtual = (data_hoje.day + 19) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + 19) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + 20)
-                DayPlNovo = (31 - (data_hoje.day + 20)) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + 20)) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -73,9 +73,9 @@ def Calcularven2(pAtual, pNovo, pVen):
             # Calcula para o caso em que a data atual é após o dia 10
             elif data_hoje.day > 10:
                 Day = data_hoje.day - 10
-                DayPlAtual = (data_hoje.day - 10) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - 10) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - 10)
-                DayPlNovo = (30 - (data_hoje.day - 10)) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - 10)) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -97,9 +97,9 @@ def Calcularven2(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             if data_hoje.day <= 10:
                 Day = data_hoje.day + 19
-                DayPlAtual = (data_hoje.day + 19) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + 19) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + 20)
-                DayPlNovo = (31 - (data_hoje.day + 20)) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + 20)) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -118,9 +118,9 @@ def Calcularven2(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO NOVO AQUI POIS ELE ENTRA EM CONTATO DEPOIS DO VENCIMENTO
             elif data_hoje.day > 10:
                 Day = data_hoje.day - 10
-                DayPlAtual = (data_hoje.day - 10) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - 10) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - 10)
-                DayPlNovo = (30 - (data_hoje.day - 10)) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - 10)) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -142,7 +142,7 @@ def Calcularven2(pAtual, pNovo, pVen):
         if data_hoje.month != 1:
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             Day = data_hoje.day + 19
-            DayPlAtual = (data_hoje.day + 19) * globals()[f"plan{pAtual}"]()
+            DayPlAtual = (data_hoje.day + 19) * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + 20)
             DayPlNovo = (31 - (data_hoje.day + 20)) * globals()[f"plan{pNovo}"]()
 
@@ -162,9 +162,9 @@ def Calcularven2(pAtual, pNovo, pVen):
         # Se for o primeiro mês do ano
         else:
             Day = data_hoje.day + 19
-            DayPlAtual = (data_hoje.day + 19) * globals()[f"plan{pAtual}"]()
+            DayPlAtual = (data_hoje.day + 19) * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + 20)
-            DayPlNovo = (31 - (data_hoje.day + 20)) * globals()[f"plan{pNovo}"]()
+            DayPlNovo = (31 - (data_hoje.day + 20)) * (globals()[f"plan{pAtual}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
 
@@ -191,9 +191,9 @@ def Calcularven3(pAtual, pNovo, pVen):
         if data_hoje.month != 1:
             if data_hoje.day <= DadosVen[0][1]:
                 Day = data_hoje.day + DadosVen[0][2]
-                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][2])
-                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -210,9 +210,9 @@ def Calcularven3(pAtual, pNovo, pVen):
                 return r
             elif data_hoje.day > DadosVen[0][1]:
                 Day = data_hoje.day - DadosVen[0][1]
-                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - DadosVen[0][1])
-                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -231,9 +231,9 @@ def Calcularven3(pAtual, pNovo, pVen):
         else:
             if data_hoje.day <= DadosVen[0][1]:
                 Day = data_hoje.day + DadosVen[0][2]
-                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][2])
-                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -250,9 +250,9 @@ def Calcularven3(pAtual, pNovo, pVen):
                 return r
             elif data_hoje.day > DadosVen[0][1]:
                 Day = data_hoje.day - DadosVen[0][1]
-                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - DadosVen[0][1])
-                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -272,9 +272,9 @@ def Calcularven3(pAtual, pNovo, pVen):
         if data_hoje.month != 1:
             if data_hoje.day <= DadosVen[0][1]:
                 Day = data_hoje.day + DadosVen[0][2]
-                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][2])
-                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -291,9 +291,9 @@ def Calcularven3(pAtual, pNovo, pVen):
                 return r
             elif data_hoje.day > DadosVen[0][1]:
                 Day = data_hoje.day - DadosVen[0][2]
-                DayPlAtual = (data_hoje.day - DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - DadosVen[0][2])
-                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][2])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][2])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -310,9 +310,9 @@ def Calcularven3(pAtual, pNovo, pVen):
                 return r
         else:
             Day = data_hoje.day + DadosVen[0][2]
-            DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+            DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][2])
-            DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * globals()[f"plan{pNovo}"]()
+            DayPlNovo = (31 - (data_hoje.day + DadosVen[0][2])) * (globals()[f"plan{pAtual}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
 
@@ -333,13 +333,13 @@ def CalculoDesc(Plano, D, M):
     if Plano == None:
         r = 'Resultado'
     else:
-        Valor_dia = globals()[f"plan{Plano}"]()
+        Valor_dia = round((globals()[f"plan{Plano}"]()/30),2 )
         d = float(D) * Valor_dia
         m = float(M) * Valor_dia / 1440
         Valor_Desc = d + m
-        Valor_Total = i - Valor_Desc
+        Valor_Total = globals()[f"plan{Plano}"]() - Valor_Desc
 
-        r = f"{i}  Solicitação de Desconto\nPlano: {Plano}\n\nDias: {D}\nMinutos: {M}\nDesconto de: {Valor_Desc:.2f}\nValor final da fatura: {Valor_Total:.2f}"
+        r = f"Solicitação de Desconto\nPlano: {Plano}\n\nDias: {D}\nMinutos: {M}\nDesconto de: {Valor_Desc:.2f}\nValor final da fatura: {Valor_Total:.2f}"
 
     return r
 
@@ -354,9 +354,9 @@ def CalculoA(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             if data_hoje.day <= DadosVen[0][1]:
                 Day = data_hoje.day + DadosVen[0][2]
-                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][3])
-                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -374,9 +374,9 @@ def CalculoA(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO NOVO AQUI POIS ELE ENTRA EM CONTATO DEPOIS DO VENCIMENTO
             elif data_hoje.day > DadosVen[0][1]:
                 Day = data_hoje.day - DadosVen[0][1]
-                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - DadosVen[0][1])
-                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -396,9 +396,9 @@ def CalculoA(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             if data_hoje.day <= DadosVen[0][1]:
                 Day = data_hoje.day + DadosVen[0][2]
-                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][3])
-                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -416,9 +416,9 @@ def CalculoA(pAtual, pNovo, pVen):
             # RETIRANDO UMA DIA DO PLANO NOVO AQUI POIS ELE ENTRA EM CONTATO DEPOIS DO VENCIMENTO
             elif data_hoje.day > DadosVen[0][1]:
                 Day = data_hoje.day - DadosVen[0][1]
-                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * globals()[f"plan{pAtual}"]()
+                DayPlAtual = (data_hoje.day - DadosVen[0][1]) * (globals()[f"plan{pAtual}"]()/30)
                 RestanteDayNovo = 30 - (data_hoje.day - DadosVen[0][1])
-                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * globals()[f"plan{pNovo}"]()
+                DayPlNovo = (30 - (data_hoje.day - DadosVen[0][1])) * (globals()[f"plan{pAtual}"]()/30)
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
@@ -438,9 +438,9 @@ def CalculoA(pAtual, pNovo, pVen):
         if data_hoje.month != 1:
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             Day = data_hoje.day + DadosVen[0][2]
-            DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+            DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][3])
-            DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * globals()[f"plan{pNovo}"]()
+            DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * (globals()[f"plan{pAtual}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
 
@@ -457,9 +457,9 @@ def CalculoA(pAtual, pNovo, pVen):
             return r
         else:
             Day = data_hoje.day + DadosVen[0][2]
-            DayPlAtual = (data_hoje.day + DadosVen[0][2]) * globals()[f"plan{pAtual}"]()
+            DayPlAtual = (data_hoje.day + DadosVen[0][2]) * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + DadosVen[0][3])
-            DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * globals()[f"plan{pNovo}"]()
+            DayPlNovo = (31 - (data_hoje.day + DadosVen[0][3])) * (globals()[f"plan{pAtual}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
 
