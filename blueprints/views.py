@@ -1,8 +1,7 @@
 from flask import request, render_template, Blueprint
-from Seatools.blueprints.swich_calculo import venc
-from Seatools.blueprints.mudar_venc import *
-from Seatools.blueprints.calculos import CalculoDesc
-from Seatools.blueprints.Calculos_Manual import *
+from blueprints.swich_calculo import *
+from blueprints.mudar_venc import *
+from blueprints.calculos import *
 
 Telas = Blueprint('Telas', __name__)
 
@@ -26,8 +25,3 @@ def homepage2():
 def homepage3():
     resultadoDesc =  CalculoDesc(Plano = request.form.get('Plano'),D = request.form.get('D'), M = request.form.get('M'))
     return render_template("homepage3.html", resultadoDesc = resultadoDesc)
-
-@Telas.route("/homepage_manual",methods=['POST','GET'])
-def homepage_manual():
-    resultado_manual_plano = Cal(pVen=request.form.get('vencimentoCliente'),plano=request.form.get('plano'),Data_Simulada=request.form.get('dataSolicitacao'))
-    return render_template("homepage_manual.html", resultado_manual_plano=resultado_manual_plano)

@@ -1,6 +1,6 @@
-from Seatools.blueprints.planos import *
 from datetime import date
 import calendar
+from blueprints.planos import *
 
 
 data_hoje = date.today()  ##PEGANDO LOGO A DATA DE HOJE PRA SAPORRA TODA
