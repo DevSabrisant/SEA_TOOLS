@@ -22,6 +22,8 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
 
         quantidade_dias = calendar.monthrange(date.today().year, date.today().month)[1]
 
+        Prox_quantidade_dias = calendar.monthrange(date.today().year, date.today().month+1 if data_hoje.month != 12 else 1)[1]
+
         # PROXIMO MÊS
 
         ProxAtual = (data_hoje.month % 12) + 1
@@ -30,12 +32,12 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
 
         Ant_IniVenc01 = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12, 1)
         Ant_IniVenc01Br = Ant_IniVenc01.strftime("%d/%m/%Y")
-        Atu_FinalVenc30 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, quantidade_dias)
+        Atu_FinalVenc30 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, data_hoje.month, quantidade_dias)
         Atu_FinalVenc30Br = Atu_FinalVenc30.strftime("%d/%m/%Y")
 
         IniVenc01 = date(data_hoje.year, data_hoje.month, 1)
         IniVenc01Br = IniVenc01.strftime("%d/%m/%Y")
-        FinalVenc30 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, Ant_quantidade_dias)
+        FinalVenc30 = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, Prox_quantidade_dias)
         FinalVenc30Br = FinalVenc30.strftime("%d/%m/%Y")
 
         #====================================================================================================================
@@ -125,12 +127,16 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
             if data_hoje.day <= IniVenc11.day:
                 data1 = Ant_IniVenc11
                 data2 = Atu_FinalVenc30
-                Qtd = data2 - data1
+                Qtd_total = data2 - data1
 
-                Valor = Qtd.days * (globals()[f"plan{vPlano}"]() / 30)
-                Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]() / 30)
+                Qtd = (Ant_quantidade_dias - 11)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc11Br} -- {Atu_FinalVenc30Br}. São {Qtd.days} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão 30 dias -- totalizando:  {Valo_plan_completo:.2f}"
+                Valor = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
+                Valo_plan_completo = quantidade_dias * (globals()[f"plan{vPlano}"]() / 30)
+                Valor_proporcional = Qtd * (globals()[f"plan{vPlano}"]() / 30)
+
+
+                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc11Br} -- {Atu_FinalVenc30Br}. São {Qtd_total.days} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nCompleta: {quantidade_dias} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd} dias -- {Valor_proporcional:.2f}"
 
                 return r
             else:
@@ -162,16 +168,13 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 data1 = Ant_IniVenc21
                 data2 = Atu_FinalVenc10
 
-                Qtd = data2 - data1
-
-                data2 = Atu_FinalVenc30
                 Qtd_total = data2 - data1
 
-                Valor_proporcional = Qtd.days * (globals()[f"plan{vPlano}"]() / 30)
-                Valo_plan_completo = (Qtd_total.days-Qtd.days) * (globals()[f"plan{vPlano}"]() / 30)
-                Valor_total = Valor_proporcional + Valo_plan_completo
+                Valor_proporcional = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
+                Valo_plan_completo = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
+                Valor_total = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc21Br} -- {FinalVenc10Br}. São {Qtd_total.days} dias -- Total: {Valor_total:.2f}\nCom desconto de 10%: {Valor_total - Valor_total * 0.1:.2f}\nDesconto de: {Valor_total * 0.1:.2f}\n\nCompleta: {Qtd_total.days-Qtd.days} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd.days} dias -- {Valor_proporcional:.2f}"
+                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc21Br} -- {Atu_FinalVenc10Br}. São {Qtd_total.days} dias -- Total: {Valor_total:.2f}\nCom desconto de 10%: {Valor_total - Valor_total * 0.1:.2f}\nDesconto de: {Valor_total * 0.1:.2f}\n\nCompleta: {Qtd_total.days} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd_total.days} dias -- {Valor_proporcional:.2f}"
 
                 return r
             else:
@@ -181,6 +184,10 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
 
                 r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
                 return r
+
+
+
+
 
         elif (vAtual == '25' or vAtual == '30') and (vNovo == '5' or vNovo == '10'):
             if data_hoje.day <= IniVenc21.day:
