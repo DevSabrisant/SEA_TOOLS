@@ -10,13 +10,13 @@ function copiarTexto() {
 }
 
 
-function copiarTexto() {
+function copiarTexto2() {
             var textarea = document.getElementById('resultadoVencimento');
             textarea.select();
             document.execCommand('copy');
 }
 
-function copiarTexto() {
+function copiarTexto3() {
             var textarea = document.getElementById('resultadoDesc');
             textarea.select();
             document.execCommand('copy');

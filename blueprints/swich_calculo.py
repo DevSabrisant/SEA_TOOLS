@@ -1,4 +1,4 @@
-from Seatools.blueprints.calculos import *
+from blueprints.calculos import *
 
 def venc(pVen, pAtual, pNovo, checkA):
     if checkA:

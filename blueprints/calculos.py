@@ -1,4 +1,4 @@
-from Seatools.blueprints.planos import *
+from blueprints.planos import *
 from datetime import date
 import calendar
 
