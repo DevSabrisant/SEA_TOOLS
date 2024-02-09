@@ -15,8 +15,14 @@ img {
     height: auto;
     margin-bottom: 20px;
 }
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
 button {
+    flex-grow: 1;
     background-color: #3498db;
     color: white;
     padding: 10px 20px;
@@ -46,4 +52,11 @@ button:hover {
 
 .button-container {
     display: flex;
+}
+
+@media screen and (max-width: 600px) {
+    img{
+        width: 350px;
+        height: 350px;
+    }
 }

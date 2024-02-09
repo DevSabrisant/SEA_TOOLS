@@ -6,7 +6,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #11BFF5;
-            overflow: hidden;
+            
 
 
         }
@@ -16,6 +16,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 200px;
 
         }
 
@@ -99,17 +100,7 @@
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .imagens-laterais{
-            position: absolute;
-            left: 100px;
-            top: 0;
-            width: 250px; /* Ajuste conforme necessário */
-            height: 100vh; /* Ajuste conforme necessário */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-        }
+    
 
         textarea {
             resize: none;
@@ -126,17 +117,43 @@
         .footer{
             display: flex;
             flex-direction: row;
+            align-items: center;
         }
 
        .links{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         font-family: julius sans one;
-
-       }
+        }
 
        #git{
         opacity: 70%;
-        height: 55px;
-        width: 55px;
+        height: 50px;
+        width: 50px;
+       }
+        @media screen and (max-width: 600px) {
+            .conteudo-principal{
+                display: flex;
+                flex-direction: column-reverse;
+             }
+             .container {
+                max-width: 80%;
+                }
+
+          img{
+            display: none;
+          }
+          #git{
+            display: none;
+          }
+          .links{
+            flex-direction: row;
+            gap: 10px;
+          }
+          .footer{
+            flex-direction: row;
+            margin-top: -50px;
+            justify-content: center;
+          }
+         
         }
