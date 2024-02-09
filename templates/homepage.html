@@ -5,23 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage.css') }}">
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>Mudança de Plano</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+<link rel="stylesheet" href="../static/css/style_homepage.css">  
+
+<title>Mudança de Plano</title>
+    
+
+    <script>
+        function trocarPagina() {
+            window.location.href = "/homepage2";
+        }
+
+        function copiarTexto() {
+            var textarea = document.getElementById('resultado');
+            textarea.select();
+            document.execCommand('copy');
+        }
+    </script>
 </head>
 <body>
-    <header>
-           <div class="imagens-laterais">
-               <img src="{{ url_for('static', filename='imagens/seatelecomimg.png') }}" alt="Logo">
-            </div> 
-           </header>
-<main class='conteudo-principal'>
+           
+           
+    <main class='conteudo-principal'>
+
+    <div class="imagens-laterais">
+        <img src="{{ url_for('static', filename='imagens/seatelecomimg.png') }}" alt="Logo"> 
+     </div> 
+
 <div class="container">
-    <form action="/homepage" method="post">
+    <form action="/" method="post">
         <label for="planoAtual">Plano Atual:</label>
         <select id="planoAtual" name="planoAtual" required>
             <option value="">Selecionar</option>
@@ -51,19 +67,19 @@
             <option value="30">30</option>
         </select>
 
-         <!--<div class="checkbox-container">
+        <div class="checkbox-container">
             <label for="cidadeAnanindeua" style="margin-right: 10px;">Cliente de Ananindeua:</label>
             <input type="checkbox" id="cidadeAnanindeua" name="cidadeAnanindeua">
-        </div> -->
+        </div>
 
         <div class="button-container">
-            <button type="submit">Calcular</button>
+            <button type="submit">Calcular </button>
             <button type="button" onclick="copiarTexto()">Copiar</button>
         </div>
 
         <textarea id="resultado" name="resultado" rows="4" readonly>{{ resultado or 'Resultado' }}</textarea>
 
-        <button type="button" onclick="Home()">Voltar</button>
+        <button type="button" onclick="trocarPagina()">Mudança de Vencimento</button>
     </form>
 </div>
 </main>
@@ -71,14 +87,13 @@
 <div class = "footer">
     <div class = "links">
 
-    <a href="https://github.com/CaioLir4">Caio Lira</a>
-      <a href="https://github.com/ewdson7">Ewdson Tiago</a>
+    <a href="https://github.com/CaioLir4">Caio Lira | </a>
+      <a href="https://github.com/ewdson7">Ewdson Tiago | </a>
         <a href="https://github.com/DevSabrisant">Sabrina Santana</a>
     </div>
-    <div>
-        <img id = "git" src="{{ url_for('static', filename='imagens/github.png') }}" alt="github">
+
+        <img id = "git" src="{{ url_for('static', filename='imagens/github.png') }}" alt="github">  
     </div>
-</div>
 
 
 </body>

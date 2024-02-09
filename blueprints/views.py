@@ -1,7 +1,7 @@
 from flask import request, render_template, Blueprint
-from blueprints.swich_calculo import *
+from blueprints.swich_calculo import venc
 from blueprints.mudar_venc import *
-from blueprints.calculos import *
+from blueprints.calculos import CalculoDesc
 
 Telas = Blueprint('Telas', __name__)
 

@@ -6,7 +6,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #11BFF5;
-    overflow: hidden;
+    
+   
 }
 
 .conteudo-principal {
@@ -14,6 +15,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 200px;
+    margin-bottom: 180px;
 }
 
 .container {
@@ -97,17 +100,6 @@ img {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.imagens-laterais {
-    position: absolute;
-    left: 100px;
-    top: 0;
-    width: 250px;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 textarea {
     resize: none;
     font-size: 16px;
@@ -121,19 +113,52 @@ textarea {
     width: 100%;
 }
 
-.footer {
+.footer{
+
     display: flex;
+   
     flex-direction: row;
+    align-items: center;
+    
 }
 
-.links {
-    display: flex;
-    flex-direction: column;
-    font-family: 'julius sans one';
+.links{
+display: flex;
+flex-direction: row;
+font-family: julius sans one;
 }
 
-#git {
-    opacity: 70%;
-    height: 55px;
-    width: 55px;
+#git{
+opacity: 70%;
+height: 50px;
+width: 50px;
+
+}
+
+@media screen and (max-width: 600px) {
+    .conteudo-principal{
+        display: flex;
+        flex-direction: column-reverse;
+        
+     }
+     .container {
+        max-width: 80%;
+        }
+
+  img{
+    display: none;
+  }
+  #git{
+    display: none;
+  }
+  .links{
+    flex-direction: row;
+    gap: 10px;
+  }
+  .footer{
+    flex-direction: row;
+    margin-top: -50px;
+    justify-content: center;
+  }
+ 
 }

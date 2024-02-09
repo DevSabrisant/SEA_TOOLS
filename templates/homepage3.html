@@ -7,27 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage3.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>Mudança de Vencimento</title>
+    <link rel="stylesheet" href="../static/css/style_homepage3.css">
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <title>Aplicação de Desconto</title>
 
 
 
 </head>
 <body>
 
-    <header>
- <div class="sea">
-    <div class="imagens-laterais">
-        <img src="{{ url_for('static', filename='imagens/seatelecomimg.png') }}" alt="Logo">
-
-    </div>
-
-</div>
-    </header>
-
+   
 
 
 
 <main class = "conteudo-principal">
+    <div class="imagens-laterais">
+        <img src="{{ url_for('static', filename='imagens/seatelecomimg.png') }}" alt="Logo"> 
+     </div> 
 <div class="container">
     <form action="/homepage3" method="post">
 
@@ -63,15 +59,17 @@
 </main>
 
 <div class = "footer">
-    <div class = "links">
 
-    <a href="https://github.com/CaioLir4">Caio Lira</a>
-      <a href="https://github.com/ewdson7">Ewdson Tiago</a>
-        <a href="https://github.com/DevSabrisant">Sabrina Santana</a>
+    <div class = "links">
+    <a href="https://github.com/CaioLir4" target="_blank">Caio Lira |</a>
+    <a href="https://github.com/ewdson7" target="_blank">Ewdson Tiago |</a>
+    <a href="https://github.com/DevSabrisant" target="_blank">Sabrina Santana</a>
     </div>
+
     <div>
         <img id = "git" src="{{ url_for('static', filename='imagens/github.png') }}" alt="github">
     </div>
+
 </div>
 
 
