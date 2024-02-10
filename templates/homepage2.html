@@ -8,18 +8,7 @@
     <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/style_homepage2.css">
     <title>Mudança de Vencimento</title>
-    
-    <script>
-        function trocarPagina() {
-            window.location.href = "/";
-        }
-
-        function copiarTexto() {
-            var textarea = document.getElementById('resultadoVencimento');
-            textarea.select();
-            document.execCommand('copy');
-        }
-    </script>
+    <link rel="script" href="../static/js/scripts.js">
 </head>
 <body>
 
@@ -64,14 +53,14 @@
             <option value="700">Plano 700</option>
             <option value="800">Plano 800</option>
         </select>
-        <div class="checkbox-container">
+        <!--<div class="checkbox-container">
             <label for="cidadeAnanindeua" style="margin-right: 10px;">Cliente de Ananindeua:</label>
             <input type="checkbox" id="cidadeAnanindeua" name="cidadeAnanindeua">
-        </div>
+        </div>-->
 
         <div class="button-container">
             <button type="submit">Calcular</button>
-            <button type="button" onclick="copiarTexto()">Copiar</button>
+            <button type="button" onclick="copiarTexto2()">Copiar</button>
         </div>
 
         <textarea id="resultadoVencimento" name="resultadoVencimento" rows="4" readonly>{{ resultadoVencimento or 'Resultado' }}</textarea>

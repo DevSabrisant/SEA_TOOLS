@@ -10,22 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
 <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
-<link rel="stylesheet" href="../static/css/style_homepage.css">  
+<link rel="stylesheet" href="../static/css/style_homepage.css">
+<link rel="script" href="../static/js/scripts.js">
 
 <title>Mudança de Plano</title>
-    
 
-    <script>
-        function trocarPagina() {
-            window.location.href = "/homepage2";
-        }
-
-        function copiarTexto() {
-            var textarea = document.getElementById('resultado');
-            textarea.select();
-            document.execCommand('copy');
-        }
-    </script>
 </head>
 <body>
            
@@ -67,13 +56,13 @@
             <option value="30">30</option>
         </select>
 
-        <div class="checkbox-container">
+        <!--<div class="checkbox-container">
             <label for="cidadeAnanindeua" style="margin-right: 10px;">Cliente de Ananindeua:</label>
             <input type="checkbox" id="cidadeAnanindeua" name="cidadeAnanindeua">
-        </div>
+        </div>-->
 
         <div class="button-container">
-            <button type="submit">Calcular </button>
+            <button type="submit">Calcular</button>
             <button type="button" onclick="copiarTexto()">Copiar</button>
         </div>
 
