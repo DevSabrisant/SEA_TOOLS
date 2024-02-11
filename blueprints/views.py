@@ -22,5 +22,5 @@ def homepage2():
     return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
 @Telas.route("/homepage3", methods=['POST','GET'])
 def homepage3():
-    resultadoDesc =  CalculoDesc(Plano = request.form.get('Plano'),D = request.form.get('D'), M = request.form.get('M'))
+    resultadoDesc =  CalculoDesc(Plano = request.form.get('Plano'),D = request.form.get('D'), M = request.form.get('M'), Data_Solicitacao = request.form.get("dataSolicitacao"))
     return render_template("homepage3.html", resultadoDesc = resultadoDesc)
