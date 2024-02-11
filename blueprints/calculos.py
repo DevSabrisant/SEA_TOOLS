@@ -204,9 +204,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month - 1, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month - 1, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -223,9 +223,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 ProxAtual = (data_hoje.month % 12) + 1
@@ -244,9 +244,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, 12, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, 12, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -263,9 +263,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 ProxAtual = (data_hoje.month % 12) + 1
@@ -285,9 +285,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month - 1, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month - 1, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -304,9 +304,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month - 1, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month - 1, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -323,9 +323,9 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
 
             ValorTotal = DayPlAtual + DayPlNovo
 
-            IniConsumo = date(data_hoje().year, 12, DadosVen[0][0])
+            IniConsumo = date(data_hoje.year, 12, DadosVen[0][0])
             IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-            Ate = date(data_hoje().year, data_hoje().month, data_hoje.day)
+            Ate = date(data_hoje.year, data_hoje.month, data_hoje.day)
             AteBr = Ate.strftime("%d/%m/%Y")
 
             FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -369,9 +369,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month - 1, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month - 1, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -389,9 +389,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 ProxAtual = (data_hoje.month % 12) + 1
@@ -411,9 +411,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, 12, 11)
+                IniConsumo = date(data_hoje.year, 12, 11)
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -431,9 +431,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 ProxAtual = (data_hoje.month % 12) + 1
@@ -455,9 +455,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month - 1, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month - 1, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
@@ -474,9 +474,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
                 ValorTotal = DayPlAtual + DayPlNovo
 
-                IniConsumo = date(data_hoje().year, data_hoje().month, DadosVen[0][0])
+                IniConsumo = date(data_hoje.year, data_hoje.month, DadosVen[0][0])
                 IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-                Ate = date(data_hoje().year, data_hoje().month, data_hoje.day - 1)
+                Ate = date(data_hoje.year, data_hoje.month, data_hoje.day - 1)
                 AteBr = Ate.strftime("%d/%m/%Y")
 
                 ProxAtual = (data_hoje.month % 12) + 1
@@ -495,9 +495,9 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
             ValorTotal = DayPlAtual + DayPlNovo
 
-            IniConsumo = date(data_hoje().year, 12, DadosVen[0][0])
+            IniConsumo = date(data_hoje.year, 12, DadosVen[0][0])
             IniConsumoBr = IniConsumo.strftime("%d/%m/%Y")
-            Ate = date(data_hoje().year, data_hoje().month, data_hoje.day)
+            Ate = date(data_hoje.year, data_hoje.month, data_hoje.day)
             AteBr = Ate.strftime("%d/%m/%Y")
 
             FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])

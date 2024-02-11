@@ -229,7 +229,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
             # QUANTIDADE DE DIAS NO MÊS
 
-            quantidade_dias = calendar.monthrange(data_hoje().year, data_hoje().month)[1]
+            quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
 
 
             DadosVenA = [(6, 5) if vNovo == "5"
@@ -252,9 +252,9 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
             ProxAtual = (data_hoje.month % 12) + 1
 
-            IniVenc = date(data_hoje().year, data_hoje().month, DadosVenB[0][0])
+            IniVenc = date(data_hoje.year, data_hoje.month, DadosVenB[0][0])
             IniVencBr = IniVenc.strftime("%d/%m/%Y")
-            FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje().month % 12) + 1,
+            FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje.month % 12) + 1,
                              DadosVenA[0][1])
             FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
 
@@ -266,7 +266,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
                 r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA!"
             else:
                 if int(vAtual) < int(vNovo):
-                    FinalVencMaisProx = date(data_hoje.year, data_hoje().month, DadosVenA[0][1])
+                    FinalVencMaisProx = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
 
                     FinalVencMaisProxBr = FinalVencMaisProx.strftime("%d/%m/%Y")
 
