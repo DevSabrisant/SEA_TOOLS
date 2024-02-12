@@ -1,5 +1,5 @@
 from flask import request, render_template, Blueprint
-from blueprints.swich_calculo import venc
+from blueprints.swich_calculo import *
 from blueprints.mudar_venc import *
 from blueprints.calculos import CalculoDesc
 
@@ -11,16 +11,16 @@ def Home():
 
 @Telas.route("/homepage", methods=['POST', 'GET'])
 def homepage():
-    resultado = venc(pVen=request.form.get('vencimento'), pAtual=request.form.get('planoAtual'), pNovo=request.form.get('planoNovo'), checkA=request.form.get('cidadeAnanindeua'))
+    resultado = venc(pVen=request.form.get('vencimento'), pAtual=request.form.get('planoAtual'), pNovo=request.form.get('planoNovo'), checkA=request.form.get('cidadeAnanindeua'), Data_Solicitacao = request.form.get("dataSolicitacao"))
 
     return render_template("homepage.html", resultado=resultado)
 @Telas.route("/homepage2", methods=['POST','GET'])
 
 def homepage2():
-    resultadoVencimento = MudarVen(vAtual=request.form.get('vencimentoAtual'), vNovo=request.form.get('vencimentoNovo'), vPlano=request.form.get('planoCliente'), checkA=request.form.get('cidadeAnanindeua'))
+    resultadoVencimento = MudarVen(vAtual=request.form.get('vencimentoAtual'), vNovo=request.form.get('vencimentoNovo'), vPlano=request.form.get('planoCliente'), checkA=request.form.get('cidadeAnanindeua'), Data_Solicitacao = request.form.get("dataSolicitacao"))
 
     return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
 @Telas.route("/homepage3", methods=['POST','GET'])
 def homepage3():
-    resultadoDesc =  CalculoDesc(Plano = request.form.get('Plano'),D = request.form.get('D'), M = request.form.get('M'))
+    resultadoDesc =  CalculoDesc(Plano = request.form.get('Plano'),D = request.form.get('D'), M = request.form.get('M'), Data_Solicitacao = request.form.get("dataSolicitacao"))
     return render_template("homepage3.html", resultadoDesc = resultadoDesc)

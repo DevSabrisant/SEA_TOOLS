@@ -1,16 +1,17 @@
-from datetime import date
+from datetime import datetime, date
 import calendar
 from blueprints.planos import *
 
 
-data_hoje = date.today()  ##PEGANDO LOGO A DATA DE HOJE PRA SAPORRA TODA
+def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
-def MudarVen(vAtual, vNovo,vPlano,checkA):
+    data_hoje = datetime.strptime(Data_Solicitacao, "%Y-%m-%d").date() if (Data_Solicitacao != "") and (Data_Solicitacao != None) else date.today()
+    Data_SolicitacaoBr = data_hoje.strftime("%d-%m-%Y")
 
     global r
 
-    data1 = date.today()
-    data2 = date.today()
+    data1 = data_hoje
+    data2 = data_hoje
 
 
     if not checkA:
@@ -20,9 +21,9 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
         # QUANTIDADE DE DIAS NO MÊS
         Ant_quantidade_dias = calendar.monthrange(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12)[1]
 
-        quantidade_dias = calendar.monthrange(date.today().year, date.today().month)[1]
+        quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
 
-        Prox_quantidade_dias = calendar.monthrange(date.today().year, date.today().month+1 if data_hoje.month != 12 else 1)[1]
+        Prox_quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month+1 if data_hoje.month != 12 else 1)[1]
 
         # PROXIMO MÊS
 
@@ -72,20 +73,20 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
         # CONDIÇÕES DE TROCA DE VENCIMENTO
 
         if (vAtual == '5' or vAtual == '10') and (vNovo == '5' or vNovo == '10'):
-            r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
             return r
         elif (vAtual == '5' or vAtual == '10') and (vNovo == '15' or vNovo == '20'):
             Qtd = quantidade_dias + FinalVenc10.day
             Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
             ValorDiferenca = (Qtd-30) * (globals()[f"plan{vPlano}"]()/30)
-            r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{IniVenc01Br} -- {FinalVenc10Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd - 30} dias -- Proporcional: {ValorDiferenca:.2f}"
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{IniVenc01Br} -- {FinalVenc10Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd - 30} dias -- Proporcional: {ValorDiferenca:.2f}"
             return r
 
         elif (vAtual == '5' or vAtual == '10') and (vNovo == '25' or vNovo == '30'):
             Qtd = quantidade_dias + FinalVenc20.day
             Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
             ValorDiferenca = (Qtd-30) * (globals()[f"plan{vPlano}"]()/30)
-            r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{IniVenc01Br} -- {FinalVenc20Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd-30} dias -- Proporcional: {ValorDiferenca:.2f}"
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{IniVenc01Br} -- {FinalVenc20Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd-30} dias -- Proporcional: {ValorDiferenca:.2f}"
             return r
 
 
@@ -102,7 +103,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
         # VENCIMENTO 15 OU 20
 
         elif (vAtual == '15' or vAtual == '20') and (vNovo == '15' or vNovo == '20'):
-            r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
             return r
 
         elif (vAtual == '15' or vAtual == '20') and (vNovo == '25' or vNovo == '30'):
@@ -114,13 +115,13 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valor = Qtd.days * (globals()[f"plan{vPlano}"]() / 30)
                 ValorDiferenca = (Qtd.days - 30) * (globals()[f"plan{vPlano}"]() / 30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc11Br} -- {Atu_FinalVenc20Br}. São {Qtd.days} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd.days - 30} dias -- Proporcional:  {ValorDiferenca:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc11Br} -- {Atu_FinalVenc20Br}. São {Qtd.days} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd.days - 30} dias -- Proporcional:  {ValorDiferenca:.2f}"
                 return r
             else:
                 Qtd = (quantidade_dias - 10) + FinalVenc20.day
                 Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
                 ValorDiferenca = (Qtd-30) * (globals()[f"plan{vPlano}"]()/30)
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc11Br} -- {FinalVenc20Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd-30} dias -- Proporcional:  {ValorDiferenca:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc11Br} -- {FinalVenc20Br}. São {Qtd} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nSão {Qtd-30} dias -- Proporcional:  {ValorDiferenca:.2f}"
                 return r
 
         elif (vAtual == '15' or vAtual == '20') and (vNovo == '5' or vNovo == '10'):
@@ -136,7 +137,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valor_proporcional = Qtd * (globals()[f"plan{vPlano}"]() / 30)
 
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc11Br} -- {Atu_FinalVenc30Br}. São {Qtd_total.days} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nCompleta: {quantidade_dias} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd} dias -- {Valor_proporcional:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc11Br} -- {Atu_FinalVenc30Br}. São {Qtd_total.days} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nCompleta: {quantidade_dias} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd} dias -- {Valor_proporcional:.2f}"
 
                 return r
             else:
@@ -144,7 +145,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
                 Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]()/30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc11Br} -- {FinalVenc30Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc11Br} -- {FinalVenc30Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
 
                 return r
 
@@ -152,7 +153,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
         # VENCIMENTO 25 OU 30
 
         elif (vAtual == '25' or vAtual == '30') and (vNovo == '25' or vNovo == '30'):
-            r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\nNÃO TERÁ MUDANÇA NO VALOR DA FATURA"
             return r
 
 
@@ -174,7 +175,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valo_plan_completo = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
                 Valor_total = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc21Br} -- {Atu_FinalVenc10Br}. São {Qtd_total.days} dias -- Total: {Valor_total:.2f}\nCom desconto de 10%: {Valor_total - Valor_total * 0.1:.2f}\nDesconto de: {Valor_total * 0.1:.2f}\n\nCompleta: {Qtd_total.days} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd_total.days} dias -- {Valor_proporcional:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc21Br} -- {Atu_FinalVenc10Br}. São {Qtd_total.days} dias -- Total: {Valor_total:.2f}\nCom desconto de 10%: {Valor_total - Valor_total * 0.1:.2f}\nDesconto de: {Valor_total * 0.1:.2f}\n\nCompleta: {Qtd_total.days} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd_total.days} dias -- {Valor_proporcional:.2f}"
 
                 return r
             else:
@@ -182,7 +183,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
                 Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]()/30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
                 return r
 
 
@@ -202,7 +203,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valo_plan_completo = (Qtd_total.days-Qtd) * (globals()[f"plan{vPlano}"]() / 30)
                 Valor_total = Qtd_total.days * (globals()[f"plan{vPlano}"]() / 30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc21Br} -- {Atu_FinalVenc30Br}. São {Qtd_total.days} dias -- Proporcional: {Valor_total:.2f}\nCom desconto de 10%: {Valor_total - Valor_total * 0.1:.2f}\nDesconto de: {Valor_total * 0.1:.2f}\n\nCompleta: {Qtd_total.days-Qtd} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd} dias -- {Valor_proporcional:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{Ant_IniVenc21Br} -- {Atu_FinalVenc30Br}. São {Qtd_total.days} dias -- Proporcional: {Valor_total:.2f}\nCom desconto de 10%: {Valor_total - Valor_total * 0.1:.2f}\nDesconto de: {Valor_total * 0.1:.2f}\n\nCompleta: {Qtd_total.days-Qtd} dias -- {Valo_plan_completo:.2f}\nProporcional: {Qtd} dias -- {Valor_proporcional:.2f}"
 
                 return r
             else:
@@ -211,7 +212,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
                 Valor = Qtd_total * (globals()[f"plan{vPlano}"]()/30)
                 Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]()/30)
 
-                r = f"Plano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd_total} dias -- Total: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd_total} dias -- Total: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
                 return r
 
 
@@ -228,7 +229,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
 
             # QUANTIDADE DE DIAS NO MÊS
 
-            quantidade_dias = calendar.monthrange(date.today().year, date.today().month)[1]
+            quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
 
 
             DadosVenA = [(6, 5) if vNovo == "5"
@@ -251,9 +252,9 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
 
             ProxAtual = (data_hoje.month % 12) + 1
 
-            IniVenc = date(date.today().year, date.today().month, DadosVenB[0][0])
+            IniVenc = date(data_hoje.year, data_hoje.month, DadosVenB[0][0])
             IniVencBr = IniVenc.strftime("%d/%m/%Y")
-            FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (date.today().month % 12) + 1,
+            FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje.month % 12) + 1,
                              DadosVenA[0][1])
             FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
 
@@ -262,20 +263,20 @@ def MudarVen(vAtual, vNovo,vPlano,checkA):
             MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
 
             if vAtual == vNovo:
-                r = f"NÃO TERÁ ALTERAÇÃO NA FATURA!"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA!"
             else:
                 if int(vAtual) < int(vNovo):
-                    FinalVencMaisProx = date(data_hoje.year, date.today().month, DadosVenA[0][1])
+                    FinalVencMaisProx = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
 
                     FinalVencMaisProxBr = FinalVencMaisProx.strftime("%d/%m/%Y")
 
                     if (IniVenc.day <= DadosVenA[0][1]):
                         if ValorDiferenca < 50:
-                            r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca:.2f}\n\n{MensagemFatura}"
+                            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca:.2f}\n\n{MensagemFatura}"
                         else:
-                            r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vNovo) - int(vAtual)} dias -- Proporcional: {ValorDiferenca:.2f}\nCom desconto de 10%: {ValorDiferenca - (ValorDiferenca * 0.1):.2f}\nDesconto de: {ValorDiferenca * 0.1:.2f}"
+                            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vNovo) - int(vAtual)} dias -- Proporcional: {ValorDiferenca:.2f}\nCom desconto de 10%: {ValorDiferenca - (ValorDiferenca * 0.1):.2f}\nDesconto de: {ValorDiferenca * 0.1:.2f}"
                 else:
-                    r = f"Do {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca*-1:.2f}\n\n{MensagemFatura}"
+                    r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca*-1:.2f}\n\n{MensagemFatura}"
 
         return r
 # FUNÇÃO PARA SABER QUAL CALCULO SE DEVE USAR
