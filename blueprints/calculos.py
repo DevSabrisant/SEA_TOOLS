@@ -32,7 +32,7 @@ def Calcularven1(pAtual, pNovo, pVen, Data_Solicitacao):
     else:
         # Se o dia atual for o primeiro do mês
         RestanteDayNovo = 31 - data_hoje.day
-        DayPlNovo = globals()[f"plan{pNovo}"]() * (31 - data_hoje.day)
+        DayPlNovo = (globals()[f"plan{pNovo}"]()/30) * (31 - data_hoje.day)
 
         # SLA é a variável que representa o número de dias no mês
         SLA, quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)
@@ -46,7 +46,7 @@ def Calcularven1(pAtual, pNovo, pVen, Data_Solicitacao):
 def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
     data_hoje = datetime.strptime(Data_Solicitacao, "%Y-%m-%d").date() if (Data_Solicitacao != "") and (Data_Solicitacao != None) else date.today()
     Data_SolicitacaoBr = data_hoje.strftime("%d-%m-%Y")
-
+ 
 
     # Verifica se não é o primeiro dia do mês
     if data_hoje.day != 1:
@@ -148,7 +148,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
             Day = data_hoje.day + 19
             DayPlAtual = Day * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + 20)
-            DayPlNovo = RestanteDayNovo * globals()[f"plan{pNovo}"]()
+            DayPlNovo = RestanteDayNovo * (globals()[f"plan{pNovo}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
 
