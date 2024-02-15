@@ -1,6 +1,6 @@
-from blueprints.calculos import *
+from blueprints.mudar_plan import *
 
-def venc(pVen, pAtual, pNovo, checkA, Data_Solicitacao):
+def S_venc(pVen, pAtual, pNovo, checkA, Data_Solicitacao):
     if checkA:
         return CalculoA(pAtual, pNovo, pVen, Data_Solicitacao)  # VENCIMENTO DE ANANINDEUA
     elif pVen in ["5", "10"]:

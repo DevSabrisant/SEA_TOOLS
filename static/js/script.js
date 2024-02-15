@@ -9,6 +9,11 @@ function copiarTexto() {
    document.execCommand('copy');
 }
 
+function copiarTexto4() {
+   var textarea = document.getElementById('resultado_cancelamento');
+   textarea.select();
+   document.execCommand('copy');
+}
 
 function copiarTexto2() {
             var textarea = document.getElementById('resultadoVencimento');
@@ -35,5 +40,9 @@ function Homepage2() {
 
 function Homepage3(){
             window.location.href = "/homepage3";
+}
+
+function Homepage4(){
+            window.location.href = "/homepage4";
 }
 

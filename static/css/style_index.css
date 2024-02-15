@@ -39,7 +39,7 @@ button:hover {
 }
 
 #botao1 {
-    background-color: #e74c3c;
+    background-color: #2980b9;
 }
 
 #botao2 {
@@ -48,6 +48,9 @@ button:hover {
 
 #botao3 {
     background-color: #f39c12;
+}
+#botao4 {
+    background-color: #e74c3c;
 }
 
 .button-container {
