@@ -14,6 +14,6 @@ def plan500up():
     i = 144.33
     return i
 def plan700up():
-    i = 237.67
+    i = 177.67
     return  i
 

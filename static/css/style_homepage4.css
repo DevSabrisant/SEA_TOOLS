@@ -115,25 +115,32 @@
             margin-bottom: 20px;
             width: 100%;
         }
+        .autor{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .footer{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
+            margin-top: 10px;
         }
 
        .links{
         display: flex;
         flex-direction: row;
-        font-family: julius sans one;
+        font-size: 16px;
+        font-family: 'julius sans one', sans-serif;
+        white-space: nowrap;
+        text-overflow: clip;
         }
 
        #git{
-        opacity: 70%;
-        height: 50px;
-        width: 50px;
-
-
-        }
+        opacity: 80%;
+        height: 40px;
+        width: 40px;
+       }
         #planoNovo, #planoAtual, #vencimento{
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         }

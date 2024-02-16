@@ -1,4 +1,4 @@
-*{
+       *{
             text-decoration: none;
             color: #000;
 
@@ -7,10 +7,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #11BFF5;
             
-            
-
-
-        }
+            }
 
         .conteudo-principal{
             margin: 0;
@@ -24,16 +21,13 @@
         .container {
             max-width: 600px;
             width: 100%;
-            margin-top: 50px;
+            margin-top: 25px;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
-            display: flex;
-            flex-direction: center;
-            align-items: flex-start; /* Alterado para flex-start para alinhar à esquerda */
-        }
+           }
 
         form {
             display: flex;
@@ -106,6 +100,7 @@
         textarea {
             resize: none;
             font-size: 16px;
+           
         }
 
         .checkbox-container {
@@ -115,28 +110,39 @@
             margin-bottom: 20px;
             width: 100%; /* Adicionado para garantir largura total */
         }
+        .autor{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .footer{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
+            margin-top: 10px;
         }
 
        .links{
         display: flex;
         flex-direction: row;
-        font-family: julius sans one;
+        font-size: 16px;
+        font-family: 'julius sans one', sans-serif;
+        white-space: nowrap;
+        text-overflow: clip;
         }
 
        #git{
-        opacity: 70%;
-        height: 50px;
-        width: 50px;
+        opacity: 80%;
+        height: 40px;
+        width: 40px;
 
 
         }
         #planoNovo, #planoAtual, #vencimento{
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         }
+
+    
         @media screen and (max-width: 600px) {
             .conteudo-principal{
                 display: flex;
@@ -158,7 +164,7 @@
           }
           .footer{
             flex-direction: row;
-            margin-top: -80px;
+            margin-top: -180px;
             justify-content: center;
           }
          

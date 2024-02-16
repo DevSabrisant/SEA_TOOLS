@@ -29,9 +29,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
-            display: flex;
-            flex-direction: center;
-            align-items: flex-start; /* Alterado para flex-start para alinhar à esquerda */
+          
         }
 
         form {
@@ -114,23 +112,33 @@
             margin-bottom: 20px;
             width: 100%; /* Adicionado para garantir largura total */
         }
+        .autor{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .footer{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
+            margin-top: 10px;
         }
 
        .links{
         display: flex;
         flex-direction: row;
-        font-family: julius sans one;
+        font-size: 16px;
+        font-family: 'julius sans one', sans-serif;
+        white-space: nowrap;
+        text-overflow: clip;
         }
 
        #git{
-        opacity: 70%;
-        height: 50px;
-        width: 50px;
+        opacity: 80%;
+        height: 40px;
+        width: 40px;
        }
+       
         @media screen and (max-width: 600px) {
             .conteudo-principal{
                 display: flex;
