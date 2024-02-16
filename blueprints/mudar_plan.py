@@ -147,7 +147,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
             # RETIRANDO UMA DIA DO PLANO ATUAL AQUI POIS ELE ENTRA EM CONTATO ANTES DO VENCIMENTO
             Day = data_hoje.day + 19
             DayPlAtual = Day * (globals()[f"plan{pAtual}"]()/30)
-            RestanteDayNovo = 30 - (data_hoje.day + 20)
+            RestanteDayNovo = 31 - (data_hoje.day + 20)
             DayPlNovo = RestanteDayNovo * globals()[f"plan{pNovo}"]()
 
             ValorTotal = DayPlAtual + DayPlNovo
@@ -167,7 +167,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
         else:
             Day = data_hoje.day + 19
             DayPlAtual = Day * (globals()[f"plan{pAtual}"]()/30)
-            RestanteDayNovo = 30 - (data_hoje.day + 20)
+            RestanteDayNovo = 31 - (data_hoje.day + 20)
             DayPlNovo = RestanteDayNovo * (globals()[f"plan{pNovo}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
