@@ -3,6 +3,7 @@ from blueprints.planos import *
 import calendar
 from dateutil.relativedelta import relativedelta
 
+
 def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
     data_hoje = datetime.strptime(Data_Solicitacao, "%Y-%m-%d").date() if (Data_Solicitacao != "") and (Data_Solicitacao != None) else date.today()

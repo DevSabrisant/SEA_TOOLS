@@ -28,5 +28,5 @@ def homepage3():
 
 @Telas.route("/homepage4", methods=['POST','GET'])
 def homepage4():
-    resultado_cancelamento = Calculo_cancelamento(pAtual = request.form.get("Plano_cancelamento"), pVen = request.form.get("vencimento_cancelamento"), Data_Solicitacao = request.form.get("dataSolicitacao"),data_ati = request.form.get("data_ati"))
+    resultado_cancelamento = Calculo_cancelamento(pAtual = request.form.get("Plano_cancelamento"), pVen = request.form.get("vencimento_cancelamento"), Data_Solicitacao = request.form.get("dataSolicitacao"),data_ati = request.form.get("data_ati"),multa=request.form.get("multa"))
     return render_template("homepage4.html", resultado_cancelamento=resultado_cancelamento)
