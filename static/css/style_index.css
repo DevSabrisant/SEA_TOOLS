@@ -11,9 +11,9 @@ body {
 }
 
 img {
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .button-container {
     display: flex;
