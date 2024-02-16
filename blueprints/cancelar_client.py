@@ -25,8 +25,12 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
         else (1, quantidade_dias) if pVen == "10"
         else (0, 0)
     ]
+    if (DadosVen[0][0] == 0) or (DadosVen[0][1] == 0):
+        r = "Resultado"
+        return r
 
-    if data_ati is not None:
+    elif data_ati is not None:
+
 
         Ant_IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year,
                            data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVen[0][0])
@@ -48,10 +52,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
         Multa_Cliente = int((venc_fidelidade - data_hoje).days / 30) * 60
 
-        if (DadosVen[0][0] == 0) or (DadosVen[0][1] == 0):
-            r = "Resultado"
-            return r
-        elif (pVen == "5") or (pVen == "10"):
+        if (pVen == "5") or (pVen == "10"):
             if multa:
                 data1 = IniVenc
                 data2 = data_hoje
