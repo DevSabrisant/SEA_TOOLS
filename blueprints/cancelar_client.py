@@ -62,7 +62,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12 - ((Qtd.days // 30) + 1)) * 60
+                Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - ((Qtd.days // 30) + 1)) * 60
 
 
                 r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
@@ -91,7 +91,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12 - ((Qtd.days // 30) + 1)) * 60
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - ((Qtd.days // 30) + 1)) * 60
 
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
                         f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
@@ -103,7 +103,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12 - ((Qtd.days // 30) + 1)) * 60
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - ((Qtd.days // 30) + 1)) * 60
 
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
                         f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
