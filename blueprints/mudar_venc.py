@@ -145,7 +145,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
                 Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
                 Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]()/30)
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc11Br} -- {FinalVenc30Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc11Br} -- {Atu_FinalVenc30Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
 
                 return r
 
@@ -183,7 +183,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
                 Valor = Qtd * (globals()[f"plan{vPlano}"]()/30)
                 Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]()/30)
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc10Br}. São {Qtd} dias -- Proporcional: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n"
                 return r
 
 
@@ -212,16 +212,8 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
                 Valor = Qtd_total * (globals()[f"plan{vPlano}"]()/30)
                 Valo_plan_completo = 30 * (globals()[f"plan{vPlano}"]()/30)
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd_total} dias -- Total: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nFatura deste mês: São 30 dias -- totalizando: {Valo_plan_completo:.2f}"
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nPlano: {vPlano}Megas\nVencimento: {vAtual} para {vNovo}\n\n{MensagemFatura}\n{IniVenc21Br} -- {FinalVenc30Br}. São {Qtd_total} dias -- Total: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\n"
                 return r
-
-
-
-
-
-
-
-
     else:
         if (vAtual == "30") or (vNovo == "30"):
             r = f"A CIDADE NÃO POSSUI ESSE VENCIMENTO!"

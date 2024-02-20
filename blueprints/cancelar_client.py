@@ -49,15 +49,11 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
         ativa_clienteBr = ativa_cliente.strftime("%d/%m/%Y")
 
         venc_fidelidade = ativa_cliente + relativedelta(months= 12)
+        venc_fidelidadeBr = venc_fidelidade.strftime("%d/%m/%Y")
 
-        valor_fidelidade = 720
-
-        ciclos = venc_fidelidade.day // 30
-        desconto_total = ciclos * 60
-        Multa_Cliente = valor_fidelidade - desconto_total
+        Prazo_30 = data_hoje - ativa_cliente
 
         if (pVen == "5") or (pVen == "10"):
-
 
             if multa:
                 data1 = IniVenc
@@ -66,10 +62,14 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                    f"Ativação: {ativa_clienteBr} - {venc_fidelidade}\nMulta: {Multa_Cliente}"
-                return r
+                Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12 - ((Qtd.days // 30) + 1)) * 60
 
+
+                r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
+                    f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
+
+
+                return r
             else:
                 data1 = IniVenc
                 data2 = data_hoje
@@ -78,9 +78,9 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
                 r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                    f"Ativação: {ativa_clienteBr} - {venc_fidelidade}"
-                return r
+                    f"Ativação: {ativa_clienteBr}"
 
+                return r
         else:
             if multa:
                 if data_hoje.day <= DadosVen[0][0]:
@@ -91,8 +91,10 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12 - ((Qtd.days // 30) + 1)) * 60
+
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                        f"Ativação: {ativa_clienteBr}\nMulta: {Multa_Cliente}"
+                        f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
                     return r
                 else:
                     data1 = IniVenc
@@ -101,8 +103,10 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12 - ((Qtd.days // 30) + 1)) * 60
+
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                        f"Ativação: {ativa_clienteBr}\nMulta: {Multa_Cliente}"
+                        f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
                     return r
             else:
                 if data_hoje.day <= DadosVen[0][0]:
@@ -122,9 +126,8 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n"
-                    return r
 
-            return r
+                    return r
     else:
         r = "Resultado"
 
