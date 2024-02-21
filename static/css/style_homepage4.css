@@ -5,16 +5,9 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-<<<<<<< HEAD
+
             background-color: #000047;
-=======
-            background-color: #f0f0f0;
->>>>>>> 182043e9c861a4e68085381e4987fb760c3a63a4
-
-
-
-
-        }
+}
 
         .conteudo-principal{
             margin: 0;
@@ -139,7 +132,7 @@
         white-space: nowrap;
         text-overflow: clip;
         }
-        
+
         a{
             color: #fff;
            }

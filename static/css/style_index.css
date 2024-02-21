@@ -63,10 +63,10 @@ button:hover {
 .button-container {
     display: flex;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 182043e9c861a4e68085381e4987fb760c3a63a4
+label{
+    color: #fff;
+}
 @media screen and (max-width: 600px) {
     img{
         width: 350px;
