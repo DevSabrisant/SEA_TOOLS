@@ -217,11 +217,9 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
             else "None"]
 
             if data_hoje.day <= DadosVenA[0][1]:
-                    quantidade_dias = calendar.monthrange(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12)[1]
+                quantidade_dias = calendar.monthrange(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12)[1]
             else:
-                    quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
-
-
+                quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
 
             DadosVenB = [(6, 5, quantidade_dias, quantidade_dias+5, quantidade_dias+10, quantidade_dias+15, quantidade_dias+20) if vAtual == "5"
             else (11, 10, quantidade_dias-5, quantidade_dias, quantidade_dias+5, quantidade_dias+10, quantidade_dias+15) if vAtual == "10"
@@ -238,44 +236,35 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
             if data_hoje.day <= DadosVenA[0][1]:
 
-                    IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVenA[0][0])
-                    IniVencBr = IniVenc.strftime("%d/%m/%Y")
-                    FinalVenc = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
-                    FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
+                IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVenA[0][0])
+                IniVencBr = IniVenc.strftime("%d/%m/%Y")
+                FinalVenc = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
+                FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
 
-                    Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]() / 30)
-                    ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]() / 30)
-                    MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
+                Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]() / 30)
+                ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]() / 30)
+                MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
 
             else:
 
-                    IniVenc = date(data_hoje.year, data_hoje.month, DadosVenB[0][0])
-                    IniVencBr = IniVenc.strftime("%d/%m/%Y")
-                    FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje.month % 12) + 1, DadosVenA[0][1])
-                    FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
+                IniVenc = date(data_hoje.year, data_hoje.month, DadosVenB[0][0])
+                IniVencBr = IniVenc.strftime("%d/%m/%Y")
+                FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje.month % 12) + 1, DadosVenA[0][1])
+                FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
 
-                    Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]()/30)
-                    ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]()/30)
-                    MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
+                Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]()/30)
+                ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]()/30)
+                MensagemFatura = f"Proporcional para proxima fatura!"
 
 
-            if vAtual == vNovo:
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA! \n {vNovo} {vAtual}"
+            if (vAtual == vNovo):
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA! \n"
             else:
-                if int(vAtual) < int(vNovo):
-                    FinalVencMaisProx = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
-
-                    FinalVencMaisProxBr = FinalVencMaisProx.strftime("%d/%m/%Y")
-
-                    if (IniVenc.day <= DadosVenA[0][1]):
-                        if ValorDiferenca < 50:
-                            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca:.2f}\n\n{MensagemFatura}"
-
-                        else:
-                            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vNovo) - int(vAtual)} dias -- Proporcional: {ValorDiferenca:.2f}\nCom desconto de 10%: {ValorDiferenca - (ValorDiferenca * 0.1):.2f}\nDesconto de: {ValorDiferenca * 0.1:.2f}"
-
+                if (ValorDiferenca*-1) >= 50:
+                    r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca*-1:.2f}"
                 else:
                     r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca*-1:.2f}\n\n{MensagemFatura}"
         return r
 
+        
 # FUNÇÃO PARA SABER QUAL CALCULO SE DEVE USAR
