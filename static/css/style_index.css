@@ -8,8 +8,20 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    transition: background-color 0.3s ease;
 }
+#theme-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
 
+}
+.dark-theme {
+      background-color: #1a1a2e;
+      color: #fff;
+}
 img {
     max-width: 100%;
     height: auto;
@@ -19,8 +31,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
+}
 button {
     flex-grow: 1;
     background-color: #3498db;
@@ -33,30 +44,24 @@ button {
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
-
 button:hover {
     background-color: #2980b9;
 }
-
 #botao1 {
     background-color: #2980b9;
 }
-
 #botao2 {
     background-color: #27ae60;
 }
-
 #botao3 {
     background-color: #f39c12;
 }
 #botao4 {
     background-color: #e74c3c;
 }
-
 .button-container {
     display: flex;
 }
-
 @media screen and (max-width: 600px) {
     img{
         width: 350px;
