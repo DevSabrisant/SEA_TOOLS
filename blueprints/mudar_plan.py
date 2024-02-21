@@ -341,11 +341,11 @@ def CalculoDesc(Plano, D, M, Data_Solicitacao):
     if Plano == None:
         r = 'Resultado'
     else:
-        Valor_dia = round((globals()[f"plan{Plano}"]()/30),2 )
-        d = float(D) * Valor_dia
-        m = float(M) * Valor_dia / 1440
+        Valor_dia = (globals()[f"plan{Plano}"]() / 30)
+        d = float(Valor_dia * float(D))
+        m = float((Valor_dia / 1440) * float(M))
         Valor_Desc = d + m
-        Valor_Total = globals()[f"plan{Plano}"]() - Valor_Desc
+        Valor_Total = round((globals()[f"plan{Plano}"]() - Valor_Desc), 2)
 
         r = f"Data de Simulada: {Data_SolicitacaoBr}\nSolicitação de Desconto\nPlano: {Plano}\n\nDias: {D}\nMinutos: {M}\nDesconto de: {Valor_Desc:.2f}\nValor final da fatura: {Valor_Total:.2f}"
 
