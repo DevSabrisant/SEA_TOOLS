@@ -1,4 +1,4 @@
-from blueprints.mudar_plan import *
+from blueprints.calculos import *
 
 def S_venc(pVen, pAtual, pNovo, checkA, Data_Solicitacao):
     if checkA:

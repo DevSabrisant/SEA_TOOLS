@@ -260,23 +260,15 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
             Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]()/30)
             ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]()/30)
-            MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
+            MensagemFatura = f"Proporcional para proxima fatura!"
 
-            if vAtual == vNovo:
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA!"
+            if (vAtual == vNovo):
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA! \n"
             else:
-                if int(vAtual) < int(vNovo):
-                    FinalVencMaisProx = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
-
-                    FinalVencMaisProxBr = FinalVencMaisProx.strftime("%d/%m/%Y")
-
-                    if (IniVenc.day <= DadosVenA[0][1]):
-                        if ValorDiferenca < 50:
-                            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca:.2f}\n\n{MensagemFatura}"
-                        else:
-                            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nVencimento mais proximo: \n{IniVencBr} -- {FinalVencMaisProxBr}. São {int(vNovo) - int(vAtual)} dias -- Proporcional: {ValorDiferenca:.2f}\nCom desconto de 10%: {ValorDiferenca - (ValorDiferenca * 0.1):.2f}\nDesconto de: {ValorDiferenca * 0.1:.2f}"
+                if (ValorDiferenca * -1) >= 50:
+                    r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca * -1:.2f}"
                 else:
-                    r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca*-1:.2f}\n\n{MensagemFatura}"
+                    r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca * -1:.2f}\n\n{MensagemFatura}"
 
         return r
 # FUNÇÃO PARA SABER QUAL CALCULO SE DEVE USAR
