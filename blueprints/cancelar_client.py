@@ -31,8 +31,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
     elif data_ati:
 
-        Ant_IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year,
-                           data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVen[0][0])
+        Ant_IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVen[0][0])
         Ant_IniVencBr = Ant_IniVenc.strftime("%d/%m/%Y")
         Atu_FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, data_hoje.month, DadosVen[0][1])
         Atu_FinalVencBr = Atu_FinalVenc.strftime("%d/%m/%Y")
@@ -50,7 +49,10 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
         venc_fidelidade = ativa_cliente + relativedelta(months= 12)
         venc_fidelidadeBr = venc_fidelidade.strftime("%d/%m/%Y")
 
-        Prazo_30 = data_hoje - ativa_cliente
+        Prazo_30 = (data_hoje - ativa_cliente)
+
+
+
 
         if (pVen == "5") or (pVen == "10"):
 
@@ -60,8 +62,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                 Qtd = data2 - data1
 
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
-                Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - (
-                            (Qtd.days // 30) + 1)) * 60
+                Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12-(Prazo_30.days//30))*60
 
                 r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
                     f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
@@ -86,8 +87,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     Qtd = data2 - data1
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
-                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - (
-                                (Qtd.days // 30) + 1)) * 60
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - ((Qtd.days // 30) + 1)) * 60
 
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
                         f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
