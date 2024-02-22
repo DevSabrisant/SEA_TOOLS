@@ -239,6 +239,14 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
             else (26, 25) if vNovo == "25"
             else "None"]
 
+            if data_hoje.day <= DadosVenA[0][1]:
+                    quantidade_dias = calendar.monthrange(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12)[1]
+            else:
+                    quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
+
+
+
+
             DadosVenB = [(6, 5, quantidade_dias, quantidade_dias+5, quantidade_dias+10, quantidade_dias+15, quantidade_dias+20) if vAtual == "5"
             else (11, 10, quantidade_dias-5, quantidade_dias, quantidade_dias+5, quantidade_dias+10, quantidade_dias+15) if vAtual == "10"
             else (16, 15, quantidade_dias-10, quantidade_dias-5, quantidade_dias, quantidade_dias+5, quantidade_dias+10) if vAtual == "15"
@@ -252,23 +260,51 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
             ProxAtual = (data_hoje.month % 12) + 1
 
+
             IniVenc = date(data_hoje.year, data_hoje.month, DadosVenB[0][0])
             IniVencBr = IniVenc.strftime("%d/%m/%Y")
             FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje.month % 12) + 1,
                              DadosVenA[0][1])
             FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
 
+            if data_hoje.day <= DadosVenA[0][1]:
+
+                    IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVenA[0][0])
+                    IniVencBr = IniVenc.strftime("%d/%m/%Y")
+                    FinalVenc = date(data_hoje.year, data_hoje.month, DadosVenA[0][1])
+                    FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
+
+                    Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]() / 30)
+                    ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]() / 30)
+                    MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
+
+            else:
+
+                    IniVenc = date(data_hoje.year, data_hoje.month, DadosVenB[0][0])
+                    IniVencBr = IniVenc.strftime("%d/%m/%Y")
+                    FinalVenc = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, (data_hoje.month % 12) + 1, DadosVenA[0][1])
+                    FinalVencBr = FinalVenc.strftime("%d/%m/%Y")
+
+                    Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]()/30)
+                    ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]()/30)
+                    MensagemFatura = f"Não possui pagamento proximo, Proporcional irá para proxima fatura."
+
+
             Valor = DadosVenB[0][Contador] * (globals()[f"plan{vPlano}"]()/30)
             ValorDiferenca = (int(vNovo) - int(vAtual)) * (globals()[f"plan{vPlano}"]()/30)
             MensagemFatura = f"Proporcional para proxima fatura!"
 
-            if (vAtual == vNovo):
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA! \n"
+            if vAtual == vNovo:
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nNÃO TERÁ ALTERAÇÃO NA FATURA! \n {vNovo} {vAtual}"
             else:
+
                 if (ValorDiferenca * -1) >= 50:
                     r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca * -1:.2f}"
+
                 else:
                     r = f"Data de Simulada: {Data_SolicitacaoBr}\nDo {vAtual} para {vNovo}: \n{IniVencBr} -- {FinalVencBr}. São {DadosVenB[0][Contador]} dias -- totalizando: {Valor:.2f}\nCom desconto de 10%: {Valor - Valor * 0.1:.2f}\nDesconto de: {Valor * 0.1:.2f}\n\nProporcional de: {ValorDiferenca * -1:.2f}\n\n{MensagemFatura}"
 
         return r
+
+
 # FUNÇÃO PARA SABER QUAL CALCULO SE DEVE USAR
