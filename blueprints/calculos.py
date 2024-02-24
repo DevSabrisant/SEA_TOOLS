@@ -505,3 +505,4 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
             r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual}mb para {pNovo}mb:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  "
 
             return r
+
