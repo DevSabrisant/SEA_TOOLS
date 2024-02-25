@@ -18,4 +18,5 @@ def plan700up():
     return  i
 def plan200():
     return
-
+def planNone():
+    return 0
