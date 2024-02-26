@@ -61,11 +61,13 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                 data2 = data_hoje
                 Qtd = data2 - data1
 
+                Dias_Consumidos = data_hoje - ativa_cliente
+
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
                 Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12-(Prazo_30.days//30))*60
 
-                r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                    f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
+                r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n\n" \
+                    f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nDias consumidos: {Dias_Consumidos.days}\nMulta: {Multa_Cliente}".replace(".",",")
 
                 return r
             else:
@@ -75,8 +77,8 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                    f"Ativação: {ativa_clienteBr}"
+                r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n" \
+                    f"Ativação: {ativa_clienteBr}".replace(".",",")
 
                 return r
         else:
@@ -86,11 +88,13 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     data2 = data_hoje
                     Qtd = data2 - data1
 
+                    Dias_Consumidos = data_hoje - ativa_cliente
+
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
                     Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - ((Qtd.days // 30) + 1)) * 60
 
-                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                        f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
+                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n\n" \
+                        f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nDias consumidos: {Dias_Consumidos.days}\nMulta: {Multa_Cliente}".replace(".",",")
                     return r
                 else:
                     data1 = IniVenc
@@ -101,8 +105,10 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - (
                                 (Qtd.days // 30) + 1)) * 60
 
-                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n" \
-                        f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nMulta: {Multa_Cliente}"
+                    Dias_Consumidos = data_hoje - ativa_cliente
+
+                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n\n" \
+                        f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nDias consumidos: {Dias_Consumidos.days}\nMulta: {Multa_Cliente}".replace(".",",")
                     return r
             else:
                 if data_hoje.day <= DadosVen[0][0]:
@@ -112,7 +118,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n"
+                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n".replace(".",",")
                     return r
                 else:
                     data1 = IniVenc
@@ -121,4 +127,4 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
-                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Total: {Valor:.2f}\n"
+                    r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n".replace(".",",")

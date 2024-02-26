@@ -26,4 +26,13 @@ VALOR = Valor + (Valor*0.02)
 
 data_proxima = date(2024, ProxAtual,1)
 
-print(f"{Data}\n\n{DataEsp}\n\n{DataSub}\n\n{DataTransEsp}\n\n{quantidade_dias}\n\n {Valor}\n\n {diario}\n\n{ProxAtual}\n\n {data_proxima} \n\n {VALOR}")
+print(f"{Data}\n"
+      f"\n{DataEsp}\n"
+      f"\n{DataSub}\n"
+      f"\n{DataTransEsp}\n"
+      f"\n{quantidade_dias}\n"
+      f"\n {Valor}\n"
+      f"\n {diario}\n"
+      f"\n{ProxAtual}\n"
+      f"\n {data_proxima} \n"
+      f"\n {VALOR}")
