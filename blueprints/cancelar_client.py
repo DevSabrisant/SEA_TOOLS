@@ -127,3 +127,4 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
 
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Não\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n".replace(".",",")
+                    return r
