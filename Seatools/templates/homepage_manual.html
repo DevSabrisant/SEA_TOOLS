@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Datas de Vencimento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h2>Simulador de Datas de Vencimento</h2>
+
+    <form action="/homepage_manual" method="post">
+
+        <label for="dataSolicitacao">Data da Solicitação:</label>
+        <input type="date" id="dataSolicitacao" name="dataSolicitacao" required>
+
+        <label for="vencimentoCliente">Vencimento do Cliente:</label>
+        <input type="text" id="vencimentoCliente" name="vencimentoCliente"required>
+
+        <label for="plano">Plano:</label>
+        <select id="plano" name="plano" required>
+            <option value="plano1">Plano 1</option>
+            <option value="plano2">Plano 2</option>
+            <option value="plano3">Plano 3</option>
+        </select>
+
+        <button type="submit">Simular</button>
+
+    </form>
+
+    <textarea id="resultado_manual_plano" name="resultado_manual_plano" rows="4" readonly>{{ resultado_manual_plano or 'Resultado' }}</textarea>
+</div>
+
+</body>
+</html>
