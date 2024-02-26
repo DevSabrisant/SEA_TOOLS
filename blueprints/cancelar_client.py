@@ -49,7 +49,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
         venc_fidelidade = ativa_cliente + relativedelta(months= 12)
         venc_fidelidadeBr = venc_fidelidade.strftime("%d/%m/%Y")
 
-        Prazo_30 = (data_hoje - ativa_cliente)
+        Dias_Consumidos = data_hoje - ativa_cliente
 
 
 
@@ -61,10 +61,10 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                 data2 = data_hoje
                 Qtd = data2 - data1
 
-                Dias_Consumidos = data_hoje - ativa_cliente
+
 
                 Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
-                Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (12-(Prazo_30.days//30))*60
+                Multa_Cliente = "Dentro do prazo de 30 dias" if Dias_Consumidos.days <= 30 else (12-(Dias_Consumidos.days//30))*60
 
                 r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n\n" \
                     f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nDias consumidos: {Dias_Consumidos.days}\nMulta: {Multa_Cliente}".replace(".",",")
@@ -91,7 +91,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     Dias_Consumidos = data_hoje - ativa_cliente
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
-                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - ((Qtd.days // 30) + 1)) * 60
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Dias_Consumidos.days <= 30 else (12-(Dias_Consumidos.days//30))*60
 
                     r = f"Data Simulada: {Data_SolicitacaoBr}\nVencimento: {pVen}\nPlano: {pAtual}\nMulta: Sim\n\n{Ant_IniVencBr} - {HojeBr} são - {Qtd.days} dias - Proporcional: {Valor:.2f}\n\n" \
                         f"Fidelidade: {ativa_clienteBr} - {venc_fidelidadeBr}\nDias consumidos: {Dias_Consumidos.days}\nMulta: {Multa_Cliente}".replace(".",",")
@@ -102,8 +102,7 @@ def Calculo_cancelamento(pAtual, pVen, Data_Solicitacao, data_ati, multa):
                     Qtd = data2 - data1
 
                     Valor = Qtd.days * (globals()[f"plan{pAtual}"]() / 30)
-                    Multa_Cliente = "Dentro do prazo de 30 dias" if Prazo_30.days <= 30 else (11 - (
-                                (Qtd.days // 30) + 1)) * 60
+                    Multa_Cliente = "Dentro do prazo de 30 dias" if Dias_Consumidos.days <= 30 else (12-(Dias_Consumidos.days//30))*60
 
                     Dias_Consumidos = data_hoje - ativa_cliente
 
