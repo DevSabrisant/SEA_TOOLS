@@ -46,3 +46,6 @@ function Homepage4(){
             window.location.href = "/homepage4";
 }
 
+function Homepage5(){
+   window.location.href = "/homepage5";
+}
