@@ -23,8 +23,5 @@ def Calculo_negociacao(pAtual, Data_Solicitacao):
     
     r = f"Data Simulada:{Data_SolicitacaoBr}\nPlano Atual:{plano_atual}\nResultado:{valor_total:.2f} "
 
-    with open('arquivo_dados.csv', 'a', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['OI'])
     return r
 

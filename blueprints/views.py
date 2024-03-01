@@ -16,7 +16,7 @@ def homepage():
     resultado = S_venc(pVen=request.form.get('vencimento'), pAtual=request.form.get('planoAtual'), pNovo=request.form.get('planoNovo'), checkA=request.form.get('cidadeAnanindeua'), Data_Solicitacao = request.form.get("dataSolicitacao"))
     contador_atual = incrementar_contador()
 
-    return render_template("homepage.html", resultado=resultado)
+    return render_template("homepage.html", resultado=resultado,contador_atual=contador_atual )
 @Telas.route("/homepage2", methods=['POST','GET'])
 
 def homepage2():
