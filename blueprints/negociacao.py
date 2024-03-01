@@ -1,3 +1,4 @@
+import csv
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 import calendar
@@ -21,4 +22,9 @@ def Calculo_negociacao(pAtual, Data_Solicitacao):
     valor_total = plano_atual + multa + juros
     
     r = f"Data Simulada:{Data_SolicitacaoBr}\nPlano Atual:{plano_atual}\nResultado:{valor_total:.2f} "
-    return r 
+
+    with open('arquivo_dados.csv', 'a', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['OI'])
+    return r
+

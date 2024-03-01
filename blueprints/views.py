@@ -14,6 +14,7 @@ def Home():
 @Telas.route("/homepage", methods=['POST', 'GET'])
 def homepage():
     resultado = S_venc(pVen=request.form.get('vencimento'), pAtual=request.form.get('planoAtual'), pNovo=request.form.get('planoNovo'), checkA=request.form.get('cidadeAnanindeua'), Data_Solicitacao = request.form.get("dataSolicitacao"))
+    contador_atual = incrementar_contador()
 
     return render_template("homepage.html", resultado=resultado)
 @Telas.route("/homepage2", methods=['POST','GET'])
@@ -35,5 +36,6 @@ def homepage4():
 @Telas.route("/homepage5", methods=['POST','GET'])
 def homepage5():
     resultado_negociacao = Calculo_negociacao(pAtual = request.form.get("planoAtual"), Data_Solicitacao = request.form.get("dataSolicitacao"))
+
     return render_template("homepage5.html", resultado_negociacao=resultado_negociacao)
 
