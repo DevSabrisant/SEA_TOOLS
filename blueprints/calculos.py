@@ -32,7 +32,7 @@ def Calcularven1(pAtual, pNovo, pVen, Data_Solicitacao):
         AteBr = Ate.strftime("%d/%m/%Y")
 
         # Criando uma string formatada com os resultados dos cálculos
-        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f} "
+        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f} "
     else:
         quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
         FinalConusmo = date(data_hoje.year, data_hoje.month, quantidade_dias)
@@ -46,7 +46,7 @@ def Calcularven1(pAtual, pNovo, pVen, Data_Solicitacao):
 
         ValorTotal = DayPlAtual + DayPlNovo
 
-        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n\n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f} "
+        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n\n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f} "
 
     return r
 def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
@@ -75,7 +75,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, 10)
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
             # RETIRANDO UMA DIA DO PLANO NOVO AQUI POIS ELE ENTRA EM CONTATO DEPOIS DO VENCIMENTO
@@ -97,7 +97,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, 10)
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
         # Se for o primeiro mês do ano
@@ -120,7 +120,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, 10)
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}: \nVencimento: {pVen}\n \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}: \nVencimento: {pVen}\n \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
             # Calcula para o caso em que a data atual é após o dia 10
@@ -142,7 +142,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, 10)
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
     # Se for o primeiro dia do mês
@@ -153,7 +153,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
             Day = data_hoje.day + 19
             DayPlAtual = Day * (globals()[f"plan{pAtual}"]()/30)
             RestanteDayNovo = 31 - (data_hoje.day + 20)
-            DayPlNovo = RestanteDayNovo * globals()[f"plan{pNovo}"]()
+            DayPlNovo = RestanteDayNovo * (globals()[f"plan{pAtual}"]()/30)
 
             ValorTotal = DayPlAtual + DayPlNovo
 
@@ -165,7 +165,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
             FinalConusmo = date(data_hoje.year, data_hoje.month, 10)
             FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 #
             return r
         # Se for o primeiro mês do ano
@@ -185,7 +185,7 @@ def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):
             FinalConusmo = date(data_hoje.year, data_hoje.month, 10)
             FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
             return r
 def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
@@ -217,7 +217,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
             else:
@@ -237,7 +237,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f} ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f} ".replace(".",",")
 
                 return r
         else:
@@ -257,7 +257,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
             else:
@@ -277,7 +277,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
     else:
@@ -298,7 +298,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
             else:
@@ -317,7 +317,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
         else:
@@ -336,7 +336,7 @@ def Calcularven3(pAtual, pNovo, pVen, Data_Solicitacao):
             FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
             FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{data_hoje.strftime('%d/%m/%Y')} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
             return r
 
@@ -385,7 +385,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
             # RETIRANDO UMA DIA DO PLANO NOVO AQUI POIS ELE ENTRA EM CONTATO DEPOIS DO VENCIMENTO
@@ -406,7 +406,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
         else:
@@ -427,7 +427,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
             # RETIRANDO UMA DIA DO PLANO NOVO AQUI POIS ELE ENTRA EM CONTATO DEPOIS DO VENCIMENTO
@@ -448,7 +448,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
     else:
@@ -471,7 +471,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
                 return r
             else:
@@ -491,7 +491,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
                 FinalConusmo = date(data_hoje.year + 1 if ProxAtual == 1 else data_hoje.year, ProxAtual, DadosVen[0][1])
                 FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
+                r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}".replace(".",",")
 
                 return r
 
@@ -511,7 +511,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
             FinalConusmo = date(data_hoje.year, data_hoje.month, DadosVen[0][1])
             FinalConusmoBr = FinalConusmo.strftime("%d/%m/%Y")
 
-            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}.\nO valor final será: {ValorTotal:.2f}.\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}.\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
+            r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n  \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}\nCom 10% será: {ValorTotal - (ValorTotal * 0.1):.2f}\nDesconto de: {ValorTotal * 0.1:.2f}  ".replace(".",",")
 
             return r
 
@@ -519,7 +519,7 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
 def obter_contador():
     try:
-        # Tente ler o valor atual do contador a partir do arquivo CSV
+
         df = pd.read_csv("contador.csv")
 
         if not df.empty and 'contador' in df.columns:
@@ -527,19 +527,19 @@ def obter_contador():
         else:
             contador = 0
     except FileNotFoundError:
-        # Se o arquivo não existir, inicialize o contador
+
         contador = 0
 
     return contador
 
 def incrementar_contador():
-    # Obtenha o valor atual do contador
+
     contador = obter_contador()
 
-    # Incremente o contador
+
     contador += 1
 
-    # Salve o novo valor no arquivo CSV
+
     novo_df = pd.DataFrame({'contador': [contador]})
     novo_df.to_csv("contador.csv", index=False)
 
