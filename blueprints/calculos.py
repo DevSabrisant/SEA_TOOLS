@@ -348,7 +348,7 @@ def CalculoDesc(Plano, D, M, Data_Solicitacao):
         Valor_Desc = d + m
         Valor_Total = round((globals()[f"plan{Plano}"]() - Valor_Desc), 2)
 
-        r = f"Data de Simulada: {Data_SolicitacaoBr}\nSolicitação de Desconto\nPlano: {Plano}\n\nDias: {D}\nMinutos: {M}\nDesconto de: {Valor_Desc:.2f}\nValor final da fatura: {Valor_Total:.2f}\n\nIndiponibilidade: ---\nOS: ---".replace(
+        r = f"Data de Simulada: {Data_SolicitacaoBr}\nSolicitação de Desconto\nPlano: {Plano}\n\nDias: {D}\nMinutos: {M}\nDesconto de: {Valor_Desc:.2f}\nValor final da fatura: {Valor_Total:.2f}\n\nIndisponibilidade: ---\nOS: ---".replace(
             ".", ",")
     return r
 def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
