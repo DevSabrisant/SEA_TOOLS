@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage3.css') }}">
     <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage2.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>Mudança de Vencimento</title>
+    <title>Negociação de Debitos</title>
+
+
+
 </head>
 <body>
 
-  
+   
 
-       
+<div>Manutenção...</div>
+
+<!--<main class = "conteudo-principal">
 
 
-<main class = "conteudo-principal">
     <div class="autor">
 
         <div class="imagens-laterais">
@@ -38,31 +42,10 @@
     
          </div>
 <div class="container">
-      <form action="/homepage2" method="post">
-        <label for="vencimentoAtual">Vencimento Atual:</label>
-        <select id="vencimentoAtual" name="vencimentoAtual" required>
-            <option value="">Selecionar</option>
-            <option value="5">05</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-        </select>
+    <form action="/homepage5" method="post">
 
-        <label for="vencimentoNovo">Vencimento Novo:</label>
-        <select id="vencimentoNovo" name="vencimentoNovo" required>
-            <option value="">Selecionar</option>
-            <option value="5">05</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-        </select>
-
-        <label for="planoCliente">Plano do Cliente:</label>
-        <select id="planoCliente" name="planoCliente" required>
+        <label for="planoAtual">Plano do Cliente:</label>
+        <select id="planoAtual" name="planoAtual" required>
             <option value="">Selecionar</option>
             <option value="500_Connect">Plano 500 Sea Connect</option>
             <option value="600_Super">Plano 600 Sea Super</option>
@@ -74,22 +57,21 @@
             <option value="350">Plano 350</option>
             <option value="450">Plano 450</option>
             <option value="600">Plano 600</option>
+
         </select>
-        <div class="checkbox-container">
-            <label for="cidadeAnanindeua" style="margin-right: 10px;">Cliente de Ananindeua:</label>
-            <input type="checkbox" id="cidadeAnanindeua" name="cidadeAnanindeua">
-        </div>
+        <br>
         <div>
-          <label for="dataSolicitacao">Data de Solicitação:</label>
-            <input type="date" id="dataSolicitacao" name="dataSolicitacao">
+            <label for="dataSolicitacao">Data de vencimento Original:</label>
+            <input type="date" id="dataSolicitacao" name="dataSolicitacao" required>
         </div>
           <br>
-        <div class="button-container">
+
+         <div class="button-container">
             <button type="submit">Calcular</button>
-            <button type="button" onclick="copiarTexto2()">Copiar</button>
+            <button type="button" onclick="copiarTexto3()">Copiar</button>
         </div>
 
-        <textarea id="resultadoVencimento" name="resultadoVencimento" rows="4" readonly>{{ resultadoVencimento or 'Resultado' }}</textarea>
+        <textarea id="resultado_negociacao" name="resultado_negociacao" rows="4" readonly>{{ resultado_negociacao or 'Resultado' }}</textarea>
 
         <button type="button" onclick="Home()">Voltar</button>
     </form>
@@ -98,6 +80,10 @@
 
 </div>
 </main>
+
+
+
+</div>-->
 
 
 

@@ -1,13 +1,25 @@
-def plan500():
+def plan500_Connect():
     i = 110
     return i
-def plan600():
+def plan250():
+    i = 110
+    return i
+def plan600_Super():
     i = 130
     return i
-def plan700():
+def plan350():
+    i = 130
+    return i
+def plan700_Hiper():
     i = 160
     return i
-def plan800():
+def plan450():
+    i = 160
+    return i
+def plan800_Ultra():
+    i = 210
+    return i
+def plan600():
     i = 210
     return i
 def plan500up():
@@ -16,6 +28,6 @@ def plan500up():
 def plan700up():
     i = 177.67
     return  i
-def plan200():
-    return
+def planNone():
+    return 0
 
