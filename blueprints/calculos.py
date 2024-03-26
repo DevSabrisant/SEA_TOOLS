@@ -1,6 +1,5 @@
 import csv
 import os
-import pandas as pd
 
 from blueprints.planos import *
 from datetime import date, datetime
@@ -515,33 +514,4 @@ def CalculoA(pAtual, pNovo, pVen, Data_Solicitacao):
 
             return r
 
-
-
-def obter_contador():
-    try:
-
-        df = pd.read_csv("contador.csv")
-
-        if not df.empty and 'contador' in df.columns:
-            contador = df.iloc[0]['contador']
-        else:
-            contador = 0
-    except FileNotFoundError:
-
-        contador = 0
-
-    return contador
-
-def incrementar_contador():
-
-    contador = obter_contador()
-
-
-    contador += 1
-
-
-    novo_df = pd.DataFrame({'contador': [contador]})
-    novo_df.to_csv("contador.csv", index=False)
-
-    return contador
 
