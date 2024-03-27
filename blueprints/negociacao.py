@@ -23,7 +23,7 @@ def Calculo_negociacao(campos_adicionais):
         data_html = datetime.strptime(data_str, "%Y-%m-%d")
         data_htmlbr = data_html.strftime("%d/%m/%Y")
 
-        dias = ((data_hoje - data_html).days)-1
+        dias = ((data_hoje - data_html).days)
 
         if dias < 0:
             continue
