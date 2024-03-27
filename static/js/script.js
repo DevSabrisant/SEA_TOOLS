@@ -72,3 +72,20 @@ function Homepage5(){
 
             return true;
         }
+
+function generateTable() {
+    var rows = document.getElementById("rows").value;
+    var tableBody = '';
+
+    for (var i = 0; i < rows; i++) {
+        tableBody += '<tr>';
+        tableBody += '<td><input type="date" name="data_' + (i + 1) + '"></td>';
+        tableBody += '<td><input type="number" name="valor_' + (i + 1) + '"></td>';
+        tableBody += '</tr>';
+    }
+
+    document.querySelector("#excelTable tbody").innerHTML = tableBody;
+}
+
+
+

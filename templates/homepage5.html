@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage3.css') }}">
-    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>Negociação de Debitos</title>
-
-
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage5.css') }}">
+<link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Negociação</title>
 </head>
 <body>
 
-   
+{% if error %}
+<script>
+    alert("{{ error }}");
+</script>
+{% endif %}
 
-<div>Manutenção...</div>
-
-<!--<main class = "conteudo-principal">
-
-
-    <div class="autor">
-
-        <div class="imagens-laterais">
-            <img src="{{ url_for('static', filename='imagens/seatelecomimg.png') }}" alt="Logo"> 
-         </div> 
-    
-         <div class = "footer">
-    
-            <div class = "links">
-        
-            <a href="https://github.com/CaioLir4" target="_blank">Caio Lira | </a>
-              <a href="https://github.com/ewdson7" target="_blank">Ewdson Tiago | </a>
-                <a href="https://github.com/DevSabrisant" target="_blank">Sabrina Santana</a>
-    
-            </div>
-                <img id = "git" src="{{ url_for('static', filename='imagens/github.png') }}" alt="github">  
-            </div>
-    
-         </div>
 <div class="container">
+    <h1>Negociação De Débitos</h1>
+
     <form action="/homepage5" method="post">
+        <table id="excelTable">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <!--<th>Dias</th>
+                    <th>Multa</th>
+                    <th>Juros</th>
+                    <th>Cobrar</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="date" name="data"></td>
+                    <td><input type="number" name="valor"></td>
+                    <!--<td name="dias"></td>
+                    <td name="multa"></td>
+                    <td name="juros"></td>
+                    <td name="cobrar"></td>-->
+                </tr>
+            </tbody>
+        </table>
 
-        <label for="planoAtual">Plano do Cliente:</label>
-        <select id="planoAtual" name="planoAtual" required>
-            <option value="">Selecionar</option>
-            <option value="500_Connect">Plano 500 Sea Connect</option>
-            <option value="600_Super">Plano 600 Sea Super</option>
-            <option value="700_Hiper">Plano 700 Sea Hiper</option>
-            <option value="800_Ultra">Plano 800 Sea Ultra</option>
-            <option value="500up">Plano 500Up </option>
-            <option value="700up">Plano 700up </option>
-            <option value="250">Plano 250</option>
-            <option value="350">Plano 350</option>
-            <option value="450">Plano 450</option>
-            <option value="600">Plano 600</option>
-
-        </select>
         <br>
-        <div>
-            <label for="dataSolicitacao">Data de vencimento Original:</label>
-            <input type="date" id="dataSolicitacao" name="dataSolicitacao" required>
-        </div>
-          <br>
+         <label for="rows">Número de Faturas:</label>
+        <input type="number" id="rows" name="rows" min="2" value="2">
+        <button type="button" onclick="generateTable()">Gerar Tabela</button>
 
-         <div class="button-container">
-            <button type="submit">Calcular</button>
-            <button type="button" onclick="copiarTexto3()">Copiar</button>
-        </div>
-
-        <textarea id="resultado_negociacao" name="resultado_negociacao" rows="4" readonly>{{ resultado_negociacao or 'Resultado' }}</textarea>
-
+        <button type="submit">Calcular</button>
         <button type="button" onclick="Home()">Voltar</button>
+
     </form>
 
+    <br>
+    <br>
 
+    <h2>Tabela de Resultados</h2>
+    <div class="table-wrapper">
+        <table class="resultados-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Dias</th>
+                    <th>Multa</th>
+                    <th>Juros</th>
+                    <th>Cobrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(0, resultados|length-1, 6) %}
+                <tr>
+                    <td>{{ resultados[0+i] }}</td>
+                    <td>{{ resultados[1+i] }}</td>
+                    <td>{{ resultados[2+i] }}</td>
+                    <td>{{ resultados[3+i] }}</td>
+                    <td>{{ resultados[4+i] }}</td>
+                    <td>{{ resultados[5+i] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+    <h2>Total a ser cobrado: {{ resultados[-1] }}</h2>
 </div>
-</main>
-
-
-
-</div>-->
-
-
 
 </body>
 </html>

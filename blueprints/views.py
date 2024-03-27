@@ -4,6 +4,7 @@ from blueprints.mudar_venc import *
 from blueprints.calculos import CalculoDesc
 from blueprints.cancelar_client import Calculo_cancelamento
 from blueprints.negociacao import Calculo_negociacao
+import pandas as pd
 
 Telas = Blueprint('Telas', __name__)
 
@@ -14,9 +15,8 @@ def Home():
 @Telas.route("/homepage", methods=['POST', 'GET'])
 def homepage():
     resultado = S_venc(pVen=request.form.get('vencimento'), pAtual=request.form.get('planoAtual'), pNovo=request.form.get('planoNovo'), checkA=request.form.get('cidadeAnanindeua'), Data_Solicitacao = request.form.get("dataSolicitacao"))
-    contador_atual = incrementar_contador()
 
-    return render_template("homepage.html", resultado=resultado,contador_atual=contador_atual )
+    return render_template("homepage.html", resultado=resultado)
 @Telas.route("/homepage2", methods=['POST','GET'])
 
 def homepage2():
@@ -35,7 +35,23 @@ def homepage4():
 
 @Telas.route("/homepage5", methods=['POST','GET'])
 def homepage5():
-    resultado_negociacao = Calculo_negociacao(pAtual = request.form.get("planoAtual"), Data_Solicitacao = request.form.get("dataSolicitacao"))
+    campos_adicionais = []
+    for key, value in request.form.items():
+        if key.startswith('data') or key.startswith('valor') or key.startswith('dias') or key.startswith('multa') or key.startswith('juros') or key.startswith('cobrar'):
+            campos_adicionais.append(value)
 
-    return render_template("homepage5.html", resultado_negociacao=resultado_negociacao)
+    try:
+        r = Calculo_negociacao(campos_adicionais)
+
+        return render_template("homepage5.html", resultados=r)
+    except ValueError:
+
+        return render_template("homepage5.html", resultados= "!!", error="Por favor, preencha todos os campos corretamente." )
+
+
+
+
+
+
+
 

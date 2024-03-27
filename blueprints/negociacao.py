@@ -2,26 +2,57 @@ import csv
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 import calendar
-from blueprints.planos import *
 
-def Calculo_negociacao(pAtual, Data_Solicitacao):
-    data_hoje = datetime.strptime(Data_Solicitacao, "%Y-%m-%d").date() if (Data_Solicitacao != "") and (Data_Solicitacao != None) else date.today()
-    Data_SolicitacaoBr = data_hoje.strftime("%d-%m-%Y")
-    
-    
-    plano_atual = (globals()[f"plan{pAtual}"]())
-    
-    data_calc = date.today() - data_hoje
-        
-    ProxAtual = (data_hoje.month % 12) + 1
-    
-    multa  = plano_atual * 0.02 
-    
-    juros = plano_atual * 0.00033 * data_calc.days
-    
-    valor_total = plano_atual + multa + juros
-    
-    r = f"Data Simulada:{Data_SolicitacaoBr}\nPlano Atual:{plano_atual}\nResultado:{valor_total:.2f} "
+'''data_hoje = datetime.strptime(Data_Solicitacao, "%Y-%m-%d").date() if (Data_Solicitacao != "") and (Data_Solicitacao != None) else date.today()
+    Data_SolicitacaoBr = data_hoje.strftime("%d-%m-%Y")'''
+
+
+def Calculo_negociacao(campos_adicionais):
+    data_hoje = datetime.now().date()
+
+    r = []
+    total_a_cobrar = 0
+    cobrar_index = 5
+
+    for i in range(0, len(campos_adicionais), 2):
+        data_str = campos_adicionais[i]
+        valor = float(campos_adicionais[i + 1])
+
+        data_hoje = datetime.combine(data_hoje, datetime.min.time())
+
+        data_html = datetime.strptime(data_str, "%Y-%m-%d")
+        data_htmlbr = data_html.strftime("%d/%m/%Y")
+
+        dias = ((data_hoje - data_html).days)-1
+
+        if dias < 0:
+            continue
+
+        multa = round(valor * 0.02,2)
+        juros = round(valor * 0.00033 * dias,2)
+        cobrar = round(valor + multa + juros,2)
+
+        r.append(data_htmlbr)
+        r.append(valor)
+        r.append(dias)
+        r.append(multa)
+        r.append(juros)
+        r.append(cobrar)
+        total_a_cobrar = total_a_cobrar + cobrar
+
+
+    r.append(str(total_a_cobrar).replace(".", ","))
 
     return r
+
+
+
+
+
+
+
+
+
+
+
 
