@@ -26,7 +26,7 @@ form {
   text-align: center;
 }
 
-form input[type="number"] {
+form input[type="text"] {
   width: 120px;
   padding: 10px;
   margin-right: 10px;
