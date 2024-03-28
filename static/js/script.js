@@ -80,7 +80,7 @@ function generateTable() {
     for (var i = 0; i < rows; i++) {
         tableBody += '<tr>';
         tableBody += '<td><input type="date" class="data" name="data_' + (i + 1) + '"></td>';
-        tableBody += '<td><input type="number" class="valor" name="valor_' + (i + 1) + '"></td>';
+        tableBody += '<td><input type="text" class="valor" name="valor_' + (i + 1) + '"></td>';
         tableBody += '</tr>';
     }
 
@@ -107,4 +107,8 @@ function ValidarNegociacao() {
         // Se todos os campos estiverem preenchidos, retorna true para permitir o envio do formulário
         return true;
     }
+function validarNumero(input) {
+        // Remove qualquer caractere que não seja número, vírgula ou ponto
+        input.value = input.value.replace(/[^\d,.]/g, '');
+}
 
