@@ -16,7 +16,7 @@ def Calculo_negociacao(campos_adicionais):
 
     for i in range(0, len(campos_adicionais), 2):
         data_str = campos_adicionais[i]
-        valor = float(campos_adicionais[i + 1])
+        valor = float((campos_adicionais[i + 1]).replace(",","."))
 
         data_hoje = datetime.combine(data_hoje, datetime.min.time())
 
