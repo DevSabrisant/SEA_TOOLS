@@ -1,4 +1,4 @@
-/* Estilos gerais */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #000047;
@@ -10,7 +10,7 @@ body {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -20,7 +20,7 @@ h1, h2 {
   color: #333;
 }
 
-/* Estilos para o formulário */
+
 form {
   margin-bottom: 20px;
   text-align: center;
@@ -48,7 +48,7 @@ form button:hover {
   background-color: #0056b3;
 }
 
-/* Estilos para a tabela de resultados */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -68,12 +68,29 @@ table th {
   color: #fff;
 }
 
-/* Estilos para a imagem */
+
 img {
-  display: block;
-  margin: 20px auto;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 100%;
+            height: 250px;
+            margin: 10px;
+            border-radius: 20px;
+        }
+
+        form input[type="date"] {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
+
+form input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+

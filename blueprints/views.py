@@ -42,11 +42,10 @@ def homepage5():
 
     try:
         r = Calculo_negociacao(campos_adicionais)
-
         return render_template("homepage5.html", resultados=r)
     except ValueError:
 
-        return render_template("homepage5.html", resultados= "!!", error="Por favor, preencha todos os campos corretamente." )
+        return render_template("homepage5.html", resultados= "!!!", error="Error no envio do formulario (Vazio)" )
 
 
 

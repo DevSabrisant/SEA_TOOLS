@@ -79,13 +79,32 @@ function generateTable() {
 
     for (var i = 0; i < rows; i++) {
         tableBody += '<tr>';
-        tableBody += '<td><input type="date" name="data_' + (i + 1) + '"></td>';
-        tableBody += '<td><input type="number" name="valor_' + (i + 1) + '"></td>';
+        tableBody += '<td><input type="date" class="data" name="data_' + (i + 1) + '"></td>';
+        tableBody += '<td><input type="number" class="valor" name="valor_' + (i + 1) + '"></td>';
         tableBody += '</tr>';
     }
 
     document.querySelector("#excelTable tbody").innerHTML = tableBody;
 }
 
+function ValidarNegociacao() {
+        // Seleciona todos os campos de data e valor
+        var camposData = document.querySelectorAll('.data');
+        var camposValor = document.querySelectorAll('.valor');
 
+        // Itera sobre os campos de data e valor
+        for (var i = 0; i < camposData.length; i++) {
+            var data = camposData[i].value;
+            var valor = camposValor[i].value;
+
+            // Verifica se os campos estão vazios
+            if (data === '' || valor === '') {
+                alert('Por favor, preencha todos os campos.');
+                return false; // Impede o envio do formulário
+            }
+        }
+
+        // Se todos os campos estiverem preenchidos, retorna true para permitir o envio do formulário
+        return true;
+    }
 
