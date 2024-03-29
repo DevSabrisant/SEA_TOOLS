@@ -2,6 +2,9 @@ function Home() {
    window.location.href = "/";
 }
 
+function login() {
+   window.location.href = "/login";
+}
 
 function copiarTexto() {
    var textarea = document.getElementById('resultado');
@@ -27,16 +30,13 @@ function copiarTexto3() {
             document.execCommand('copy');
 }
 
-
 function Homepage() {
             window.location.href = "/homepage";
 }
 
-
 function Homepage2() {
             window.location.href = "/homepage2";
 }
-
 
 function Homepage3(){
             window.location.href = "/homepage3";
@@ -47,7 +47,11 @@ function Homepage4(){
 }
 
 function Homepage5(){
-   window.location.href = "/homepage5";
+            window.location.href = "/homepage5";
+}
+
+function Homepage6() {
+            window.location.href = "/homepage6";
 }
 
  function validarFormulario() {

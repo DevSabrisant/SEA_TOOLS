@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_home.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <link rel="script" href="../static/js/scripts.js">
     <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
@@ -22,6 +22,9 @@
     <button id="botao3" onclick="Homepage3()">Desconto</button>
     <button id="botao5" onclick="Homepage5()">Negociação</button>
     <button id="botao4" onclick="Homepage4()">Cancelamento</button>
+        {% if permissoes is defined and 'homepage6' in permissoes %}
+            <button id="botao6" onclick="Homepage6()">Indisponibilidades</button>
+        {% endif %}
     </div>
 
 </body>
