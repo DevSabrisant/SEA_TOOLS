@@ -16,14 +16,14 @@ def Calculo_negociacao(campos_adicionais):
 
     for i in range(0, len(campos_adicionais), 2):
         data_str = campos_adicionais[i]
-        valor = float(campos_adicionais[i + 1])
+        valor = float((campos_adicionais[i + 1]).replace(",","."))
 
         data_hoje = datetime.combine(data_hoje, datetime.min.time())
 
         data_html = datetime.strptime(data_str, "%Y-%m-%d")
         data_htmlbr = data_html.strftime("%d/%m/%Y")
 
-        dias = ((data_hoje - data_html).days)-1
+        dias = ((data_hoje - data_html).days)
 
         if dias < 0:
             continue
@@ -40,8 +40,9 @@ def Calculo_negociacao(campos_adicionais):
         r.append(cobrar)
         total_a_cobrar = total_a_cobrar + cobrar
 
-
-    r.append(str(total_a_cobrar).replace(".", ","))
+    r.append(str(round(total_a_cobrar / 3,2)).replace(".", ","))
+    r.append(str(round(total_a_cobrar / 2,2)).replace(".", ","))
+    r.append(str(round(float(total_a_cobrar),2)).replace(".", ","))
 
     return r
 
