@@ -17,3 +17,4 @@ def configure_db():
     db.create_tables([Dash])
 
 
+

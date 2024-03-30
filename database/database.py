@@ -1,3 +1,7 @@
-from peewee import SqliteDatabase
+from peewee import PostgresqlDatabase
+from dotenv import load_dotenv
+import os
 
-db = SqliteDatabase("dbsea.db")
+load_dotenv()
+
+db = PostgresqlDatabase(os.getenv('DATABASE_URI', ''))

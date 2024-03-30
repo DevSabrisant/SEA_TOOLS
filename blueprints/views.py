@@ -16,6 +16,7 @@ from database.models.dash import Dash
 Telas = Blueprint('Telas', __name__)
 @Telas.route("/", methods=['GET', 'POST'])
 def Home():
+
     if 'username' not in session:
         return redirect(url_for('Telas.login'))
 
@@ -175,14 +176,21 @@ def homepage6():
 
 @Telas.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
-    # Busca os dados do banco de dados
+
+    if 'username' not in session:
+        return redirect(url_for('Telas.login'))
+
+    username = session['username']
+    user = User.get_or_none(User.username == username)
+    permissoes = user.permissions.split(',')
+
+    if 'homepage6' not in permissoes:
+        return redirect(url_for('Telas.Home'))
     dados_dash = Dash.select().first()
 
-    # Verifica se há dados
     if dados_dash is None:
         return "Nenhum dado encontrado na tabela Dash"
 
-    # Cria um dicionário com os dados para passar para o modelo HTML
     dados = {
         'titulo': 'SEATOOLS',
         'T/Plano': dados_dash.homepage,
@@ -193,18 +201,13 @@ def dashboard():
         'Acessos':dados_dash.logins
     }
 
-    # Criando dados para um gráfico simples
     x = ['Plano', 'Vencimento','Desconto','Negociação', 'Cancelamento', 'Acessos']
     y = [dados_dash.homepage, dados_dash.homepage2,dados_dash.homepage3,dados_dash.homepage5,dados_dash.homepage4,dados_dash.logins]  # Usando os valores do banco de dados diretamente
 
-    # Criando o gráfico de barras
     grafico = go.Figure(data=[go.Bar(x=x, y=y)])
 
-    # Adicionando título ao gráfico
     grafico.update_layout(title='Requisições')
 
-    # Convertendo o gráfico para HTML
     grafico_html = grafico.to_html(full_html=False)
 
-    # Renderiza o modelo HTML do dashboard e passa os dados e o gráfico para ele
     return render_template('dashboard.html', dados=dados_dash, grafico_html=grafico_html)
