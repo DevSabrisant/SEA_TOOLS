@@ -7,7 +7,7 @@ configura_all(app)
 app.secret_key = secrets.token_hex(16)
 
 
-
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
 
 
