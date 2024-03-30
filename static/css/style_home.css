@@ -77,6 +77,13 @@ button:hover {
     background-color: #e74c3c;
 }
 
+#botao6 {
+    background-color: purple;
+}
+
+#botao-logout {
+    background-color: transparent;
+}
 label {
     color: #fff;
 }

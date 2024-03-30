@@ -116,3 +116,7 @@ function validarNumero(input) {
         input.value = input.value.replace(/[^\d,.]/g, '');
 }
 
+function logout() {
+            window.location.href = "/logout";
+        }
+
