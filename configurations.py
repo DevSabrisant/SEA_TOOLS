@@ -13,8 +13,5 @@ def configure_viewes(app):
 
 def configure_db():
     db.connect()
-    db.create_tables([User])
-    db.create_tables([Dash])
-
-
+    db.create_tables([Dash, User])
 
