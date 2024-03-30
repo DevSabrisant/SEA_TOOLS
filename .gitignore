@@ -1,5 +1,5 @@
 FlaskApp/
 node_modules/
-__pycache__
-dbsea.db
-.env
+__pycache__/
+dbsea.db/
+.env/
