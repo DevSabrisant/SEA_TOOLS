@@ -114,7 +114,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
             return r
 
         elif (vAtual == '15' or vAtual == '20') and (vNovo == '25' or vNovo == '30'):
-            if data_hoje.day <= IniVenc11.day:
+            if data_hoje.day < IniVenc11.day:
                 data1 = Ant_IniVenc11
                 data2 = Atu_FinalVenc20
                 Qtd = data2 - data1
@@ -132,7 +132,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
                 return r
 
         elif (vAtual == '15' or vAtual == '20') and (vNovo == '5' or vNovo == '10'):
-            if data_hoje.day <= IniVenc11.day:
+            if data_hoje.day < IniVenc11.day:
                 data1 = Ant_IniVenc11
                 data2 = Atu_FinalVenc30
                 Qtd_total = data2 - data1
@@ -169,7 +169,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
 
         elif (vAtual == '25' or vAtual == '30') and (vNovo == '15' or vNovo == '20'):
-            if data_hoje.day <= IniVenc21.day:
+            if data_hoje.day < IniVenc21.day:
                 data1 = Ant_IniVenc21
                 data2 = FinalVenc10
 
@@ -192,7 +192,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
 
 
         elif (vAtual == '25' or vAtual == '30') and (vNovo == '5' or vNovo == '10'):
-            if data_hoje.day <= IniVenc21.day:
+            if data_hoje.day < IniVenc21.day:
                 data1 = Ant_IniVenc21
                 data2 = Atu_FinalVenc30
 
@@ -235,7 +235,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
             else (26, 25) if vNovo == "25"
             else "None"]
 
-            if data_hoje.day <= DadosVenA[0][1]:
+            if data_hoje.day < DadosVenA[0][1]:
                     quantidade_dias = calendar.monthrange(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12)[1]
             else:
                     quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
@@ -257,7 +257,7 @@ def MudarVen(vAtual, vNovo,vPlano,checkA,Data_Solicitacao):
             ProxAtual = (data_hoje.month % 12) + 1
 
 
-            if data_hoje.day <= DadosVenA[0][1]:
+            if data_hoje.day < DadosVenA[0][1]:
 
                     IniVenc = date(data_hoje.year - 1 if data_hoje.month == 1 else data_hoje.year, data_hoje.month - 1 if data_hoje.month != 1 else 12, DadosVenB[0][0])
                     IniVencBr = IniVenc.strftime("%d/%m/%Y")
