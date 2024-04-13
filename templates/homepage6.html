@@ -4,64 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage6.css') }}">
-<link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Indisponibildiades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage6.css') }}">
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Indisponibilidades</title>
 </head>
 <body>
-    <h1>Upload de Arquivos</h1>
-    <form action="/homepage6" method="post" enctype="multipart/form-data">
-        <label for="cidade">Cidade:</label>
-        <select id="cidade" name="cidade">
+    <h1>Indisponibilidades</h1>
 
-            <option value="cidade1">Cidade 1</option>
-            <option value="cidade2">Cidade 2</option>
-            <option value="cidade3">Cidade 3</option>
+    <div class="container">
 
-        </select>
-        <br><br>
-        <label for="protocolo">Protocolo:</label>
-        <input type="text" id="protocolo" name="protocolo">
-        <br><br>
-        <label for="xls_file">Excel das CTOS:</label>
-        <input type="file" id="xls_file" name="xls_file" accept=".xlsx" multiple>
-        <br><br>
-        <label for="img_file">Foto Comunicado:</label>
-        <input type="file" id="img_file" name="img_file" accept=".png, .jpg">
-        <br><br>
-        <input type="submit" value="Enviar">
-    </form>
-         <h1>Tabela de Dados</h1>
-    <!-- Aqui estamos criando a tabela HTML com os dados do resultado 'r' -->
-    {% if not r.empty %}
-    <table border="1">
-        <thead>
-            <tr>
-                <!-- Colunas da tabela -->
-                {% for coluna in r.columns %}
-                    <th>{{ coluna }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Linhas da tabela -->
-            {% for indice, linha in r.iterrows() %}
-                <tr>
-                    {% for valor in linha %}
-                        <td>{{ valor }}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+        {% for indisponibilidade in indisponibilidades if indisponibilidade.status %}
+            <div class="indisponibilidade">
+                <div >
+                    <p style="color: red;">Ocorrendo...</p>
+                </div>
+                <p>Protocolo: {{ indisponibilidade.protocolo }}</p>
+                <p>Cidade: {{ indisponibilidade.cidade }}</p>
+                <form action="/detalhes_indisponibilidade" method="POST">
+                    <input type="hidden" name="protocolo" value="{{ indisponibilidade.protocolo }}">
+                    <button type="submit">Detalhes</button>
+                </form>
+                <br>
+                {% if permissoes is defined and 'homepage6' in permissoes %}
+                <button class="botao-excluir" data-protocolo="{{ indisponibilidade.protocolo }}" data-cidade="{{ indisponibilidade.cidade }}">Excluir</button>
+                {% endif %}
+            </div>
+        {% endfor %}
 
-    {% if not r_imagem.empty %}
-    <img src="data:image/png;base64,{{ r_imagem }}" alt="Imagem">
+        {% for indisponibilidade in indisponibilidades if not indisponibilidade.status %}
+            <div class="indisponibilidade">
+                <div>
+                <p style="color: green;">Finalizada!</p>
+                </div>
+                <p>Protocolo: {{ indisponibilidade.protocolo }}</p>
+                <p>Cidade: {{ indisponibilidade.cidade }}</p>
+
+                <form action="/detalhes_indisponibilidade" method="POST">
+                    <input type="hidden" name="protocolo" value="{{ indisponibilidade.protocolo }}">
+                    <button type="submit">Detalhes</button>
+                </form>
+                <br>
+                {% if permissoes is defined and 'homepage6' in permissoes %}
+                <button class="botao-excluir" data-protocolo="{{ indisponibilidade.protocolo }}" data-cidade="{{ indisponibilidade.cidade }}">Excluir</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- Botão para a área do assistente -->
+    {% if permissoes is defined and 'homepage6' in permissoes %}
+        <button id="botao6" onclick="indisponibilidades()">Criar</button>
     {% endif %}
+    <button id="botao7" onclick="Home()">Voltar</button>
 
+    <!-- Script JavaScript externo -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>

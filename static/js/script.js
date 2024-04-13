@@ -118,5 +118,28 @@ function validarNumero(input) {
 
 function logout() {
             window.location.href = "/logout";
+}
+function indisponibilidades() {
+    window.location.href = "/criar_indisponiblidades";
+}
+
+
+// script.js
+
+$(document).ready(function() {
+    $('.botao-excluir').click(function() {
+        var protocolo = $(this).data('protocolo');
+        var cidade = $(this).data('cidade');
+        var confirmacao = confirm("Deseja excluir a indisponibilidade? Protocolo: " + protocolo + " e Cidade: " + cidade + "?");
+        if (confirmacao) {
+            // Envia uma solicitação POST para a rota de exclusão com o protocolo
+            $.post('/excluir/' + protocolo, function(data) {
+                // Redireciona para a página inicial após a exclusão
+                window.location.href = "/homepage6";
+            });
         }
+    });
+});
+
+
 

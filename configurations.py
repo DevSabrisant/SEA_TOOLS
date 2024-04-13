@@ -2,6 +2,8 @@ from blueprints.views import Telas
 from database.database import db
 from database.models.acess import User
 from database.models.dash import Dash
+from database.models.indispinibilidades import Indisponibilidade
+
 
 
 def configura_all(app):
@@ -13,5 +15,11 @@ def configure_viewes(app):
 
 def configure_db():
     db.connect()
-    db.create_tables([Dash, User])
+    db.create_tables([User,Dash,Indisponibilidade])
+
+
+
+
+
+
 

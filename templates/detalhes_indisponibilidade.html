@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;1,300&family=Jost:ital,wght@1,300&family=Julius+Sans+One&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;1,7..72,200&family=Mansalva&family=Pixelify+Sans&family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_detalhes_indisponibilidade.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>Detalhes da Indisponibilidade</title>
+</head>
+<body>
+    <h1>Detalhes da Indisponibilidade</h1>
+
+    <div class="container">
+    <div class="dados">
+        <h2>Protocolo: {{ Protocol }}</h2>
+        <h2>Cidade: {{ Cidade }}</h2>
+        <h2>Status: {% if Status %}Ocorrendo...{% else %}Finalizada!{% endif %}</h2>
+
+
+        {% if lista_clientes %}
+        <div class="tabela-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(0, len, 2) %}
+                    <tr>
+                        <td>{{ lista_clientes[i] }}</td>
+                        <td>{{ lista_clientes[i + 1] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="foto">
+        <h2>{% if not foto %}Sem comunicado{% else %}Comunicado{% endif %}</h2>
+        {% if foto %}
+        <img src="data:image/{{ extensao }};base64,{{ foto }}" alt="Foto da Indisponibilidade">
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

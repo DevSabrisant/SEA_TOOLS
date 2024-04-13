@@ -4,14 +4,18 @@ from blueprints.mudar_venc import *
 from blueprints.calculos import CalculoDesc
 from blueprints.cancelar_client import Calculo_cancelamento
 from blueprints.negociacao import Calculo_negociacao
-from blueprints.indisponibilidades import *
+from blueprints.indisponibilidades import salvar_dados, listar_indisponibilidades,detalhes, Deletar
 from zipfile import BadZipFile
 import pandas as pd
 import plotly.graph_objs as go
-
+from peewee import IntegrityError, DoesNotExist
 from database.models.acess import User
 from database.models.dash import Dash
+import base64
+from PIL import Image
+from io import BytesIO
 
+from database.models.indispinibilidades import Indisponibilidade
 
 Telas = Blueprint('Telas', __name__)
 @Telas.route("/", methods=['GET', 'POST'])
@@ -25,6 +29,7 @@ def Home():
     permissoes = user.permissions.split(',')
 
     return render_template('Home.html', permissoes=permissoes, session=username )
+
 @Telas.route("/login", methods=['GET', 'POST'])
 def login():
     if 'username' in session:
@@ -54,12 +59,11 @@ def login():
             user = None
     return render_template('login.html')
 
-
-    return render_template('login.html')
 @Telas.route('/logout',methods=['GET', 'POST'])
 def logout():
     session.clear()
     return redirect(url_for('Telas.login'))
+
 @Telas.route("/homepage", methods=['POST', 'GET'])
 def homepage():
 
@@ -92,6 +96,7 @@ def homepage2():
 
         return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
     return render_template("homepage2.html")
+
 @Telas.route("/homepage3", methods=['POST','GET'])
 def homepage3():
     if 'username' not in session:
@@ -122,6 +127,7 @@ def homepage4():
 
         return render_template("homepage4.html", resultado_cancelamento=resultado_cancelamento)
     return render_template("homepage4.html")
+
 @Telas.route("/homepage5", methods=['POST','GET'])
 def homepage5():
     if 'username' not in session:
@@ -144,7 +150,8 @@ def homepage5():
 
             return render_template("homepage5.html", resultados= "!!!", error="Error no envio do formulario (Vazio)" )
     return render_template("homepage5.html", resultados="!!!")
-@Telas.route("/homepage6", methods=['POST','GET'])
+
+@Telas.route("/homepage6", methods=['GET', 'POST'])
 def homepage6():
     if 'username' not in session:
         return redirect(url_for('Telas.login'))
@@ -153,26 +160,10 @@ def homepage6():
     user = User.get_or_none(User.username == username)
     permissoes = user.permissions.split(',')
 
-    if 'homepage6' not in permissoes:
-        return redirect(url_for('Telas.Home'))
 
-    cidade = request.form.get('cidade')
-    protocolo = request.form.get('protocolo')
-    xls_files = request.files.getlist('xls_file')
-    img_file = request.files.get('img_file')
+    indisponibilidades = listar_indisponibilidades()
 
-    xls_data = []
-
-    if img_file is not None and img_file != '':
-        for xls_file in xls_files:
-            try:
-                xls_data.append(pd.read_excel(xls_file, engine='openpyxl'))
-            except BadZipFile:
-                pass
-    r = lista_cliente(cidade, protocolo, xls_data)
-    r_imagem = imagem_comunicado(img_file)
-
-    return render_template("homepage6.html", r=r, r_imagem=r_imagem)
+    return render_template("homepage6.html", indisponibilidades = indisponibilidades, permissoes=permissoes)
 
 @Telas.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
@@ -211,3 +202,94 @@ def dashboard():
     grafico_html = grafico.to_html(full_html=False)
 
     return render_template('dashboard.html', dados=dados_dash, grafico_html=grafico_html)
+
+@Telas.route("/criar_indisponiblidades", methods=['POST','GET'])
+def criar_indisponiblidades():
+    if 'username' not in session:
+        return redirect(url_for('Telas.login'))
+
+    username = session['username']
+    user = User.get_or_none(User.username == username)
+    permissoes = user.permissions.split(',')
+
+    if 'homepage6' not in permissoes:
+        return redirect(url_for('Telas.Home'))
+
+
+
+    if request.method == 'POST':
+        cidade = request.form.get('cidade')
+        protocolo = request.form.get('protocolo')
+        xls_files = request.files.getlist('xls_file')
+        img_file = request.files.get('img_file')
+        status = request.form.get('status')
+
+        if status == 'ativo':
+            status = True
+        else:
+            status = False
+
+        xls_data = []
+
+        '''if img_file is not None and img_file != '':
+            for xls_file in xls_files:
+                try:
+                    xls_data.append(pd.read_excel(xls_file, engine='openpyxl'))
+                except BadZipFile:
+                    pass'''
+
+        for xls_file in xls_files:
+            try:
+                xls_data.append(pd.read_excel(xls_file, engine='openpyxl'))
+            except BadZipFile:
+                pass
+        try:
+            salvar_dados(xls_data, img_file, cidade, protocolo,status, img_file.filename)
+
+            return render_template("criar_indisponiblidades.html")
+        except IntegrityError:
+            error = "Protocolo já existente!"
+            return render_template("criar_indisponiblidades.html",mensagem_erro=error)
+
+    return render_template("criar_indisponiblidades.html")
+
+@Telas.route("/detalhes_indisponibilidade", methods=['POST','GET'])
+def detalhes_indisponibilidade():
+    if 'username' not in session:
+        return redirect(url_for('Telas.login'))
+
+    protocolo = request.form.get('protocolo')
+
+    try:
+        dados, foto, mimetype = detalhes(protocolo)
+
+        tamanho = len(dados[:-4])
+
+        foto = base64.b64encode(foto).decode('utf-8')
+
+        return render_template("detalhes_indisponibilidade.html", Status=dados[-1], foto=foto, Cidade=dados[-2],
+                               Protocol=dados[-3], lista_clientes=dados[:-3], len=tamanho,
+                               extensao=mimetype.split('/')[-1].split(';')[0])
+
+    except DoesNotExist:
+        return render_template("homepage6.html")
+
+@Telas.route('/excluir/<protocolo>', methods=['POST'])
+def excluir_indisponibilidade(protocolo):
+    if 'username' not in session:
+        return redirect(url_for('Telas.login'))
+
+    username = session['username']
+    user = User.get_or_none(User.username == username)
+    permissoes = user.permissions.split(',')
+
+    if 'homepage6' not in permissoes:
+        return redirect(url_for('Telas.Home'))
+
+    try:
+
+        Deletar(protocolo)
+
+        return redirect(url_for('Telas.homepage6'))
+    except Indisponibilidade.DoesNotExist:
+        return redirect(url_for('Telas.homepage6'))
