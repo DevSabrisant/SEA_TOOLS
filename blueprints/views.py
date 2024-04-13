@@ -12,8 +12,6 @@ from peewee import IntegrityError, DoesNotExist
 from database.models.acess import User
 from database.models.dash import Dash
 import base64
-from PIL import Image
-from io import BytesIO
 
 from database.models.indispinibilidades import Indisponibilidade
 
