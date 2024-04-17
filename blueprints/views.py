@@ -291,3 +291,25 @@ def excluir_indisponibilidade(protocolo):
         return redirect(url_for('Telas.homepage6'))
     except Indisponibilidade.DoesNotExist:
         return redirect(url_for('Telas.homepage6'))
+
+@Telas.route('/homepage7', methods=['GET', 'POST'])
+def homepage7():
+    if 'username' not in session:
+        return redirect(url_for('Telas.login'))
+
+    if request.method == 'POST':
+
+        relato_cliente = request.form['relato_cliente']
+        potencia = request.form['potencia']
+        canal = request.form['canal']
+        banda = request.form['banda']
+        dns = request.form.getlist('dns')
+        upnp = request.form['upnp']
+        sntp = request.form['sntp']
+        ipv6 = request.form['ipv6']
+        observacoes = request.form['observacoes']
+        print(dns)
+        return render_template('homepage7.html', relato_cliente=relato_cliente, potencia=potencia, canal=canal,
+                               banda=banda, dns=dns, upnp=upnp, sntp=sntp, ipv6=ipv6, observacoes=observacoes)
+    return render_template('homepage7.html')
+

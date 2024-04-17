@@ -53,6 +53,9 @@ function Homepage5(){
 function Homepage6() {
             window.location.href = "/homepage6";
 }
+function Homepage7() {
+            window.location.href = "/homepage7";
+}
 
  function validarFormulario() {
             var dataAti = document.getElementById("data_ati").value;
@@ -140,6 +143,7 @@ $(document).ready(function() {
         }
     });
 });
+
 
 
 
