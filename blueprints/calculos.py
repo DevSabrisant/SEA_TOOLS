@@ -34,7 +34,31 @@ def Calcularven1(pAtual, pNovo, pVen, Data_Solicitacao):
         AteBr = Ate.strftime("%d/%m/%Y")
 
         # Criando uma string formatada com os resultados dos cálculos
-        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}   ".replace(".",",")
+        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n \n{IniConsumoBr} -- {AteBr} são {Day} dias totalizando: {DayPlAtual:.2f} \n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f} " \
+            f"""
+
+O resultado do cálculo para a troca de plano que você solicitou:
+
+- **Troca de Plano:** De {pAtual} para {pNovo}
+- **Vencimento:** Dia {pVen} de cada mês
+
+Detalhamento dos custos:
+
+1. **Período de {IniConsumoBr} a {AteBr} ({Day} dias):**
+   - Valor: R${DayPlAtual:.2f}
+
+2. **Período de {RestanteDayNovo} a {FinalConusmoBr} ({RestanteDayNovo} dias):**
+   - Valor: R${DayPlNovo:.2f}
+
+**Total a ser cobrado:** R${ValorTotal:.2f}
+
+Fique à vontade para entrar em contato se precisar de mais alguma informação ou esclarecimento
+
+""".replace(".",",")
+
+
+
+
     else:
         quantidade_dias = calendar.monthrange(data_hoje.year, data_hoje.month)[1]
         FinalConusmo = date(data_hoje.year, data_hoje.month, quantidade_dias)
@@ -48,7 +72,25 @@ def Calcularven1(pAtual, pNovo, pVen, Data_Solicitacao):
 
         ValorTotal = DayPlAtual + DayPlNovo
 
-        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n\n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} são totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}   ".replace(".",",")
+        r = f"Data de Simulada: {Data_SolicitacaoBr}\nDe {pAtual} para {pNovo}:\nVencimento: {pVen}\n\n{Data_SolicitacaoBr} -- {FinalConusmoBr} são {RestanteDayNovo} dias totalizando: {DayPlNovo:.2f}\nO valor final será: {ValorTotal:.2f}   " \
+            f"""
+
+        O resultado do cálculo para a troca de plano que você solicitou:
+
+        - **Troca de Plano:** De {pAtual} para {pNovo}
+        - **Vencimento:** Dia {pVen} de cada mês
+
+        Detalhamento dos custos:
+
+        **Período de {Data_SolicitacaoBr} a {FinalConusmoBr} ({RestanteDayNovo} dias):**
+           - Valor: R${DayPlNovo:.2f}
+
+
+        **Total a ser cobrado:** R${ValorTotal:.2f}
+
+        Fique à vontade para entrar em contato se precisar de mais alguma informação ou esclarecimento
+
+        """.replace(".", ",")
 
     return r
 def Calcularven2(pAtual, pNovo, pVen, Data_Solicitacao):

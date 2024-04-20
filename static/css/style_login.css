@@ -69,3 +69,15 @@
             transition: background-color 0.3s ease;
         }
 
+.links a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: #ffa500;
+}
+
+

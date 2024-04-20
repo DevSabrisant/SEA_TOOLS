@@ -19,5 +19,3 @@ def configure_db():
 
 
 
-
-

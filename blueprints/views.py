@@ -308,8 +308,45 @@ def homepage7():
         sntp = request.form['sntp']
         ipv6 = request.form['ipv6']
         observacoes = request.form['observacoes']
-        print(dns)
+
         return render_template('homepage7.html', relato_cliente=relato_cliente, potencia=potencia, canal=canal,
                                banda=banda, dns=dns, upnp=upnp, sntp=sntp, ipv6=ipv6, observacoes=observacoes)
     return render_template('homepage7.html')
+
+@Telas.route('/homepage8', methods=['GET', 'POST'])
+def homepage8():
+    if 'username' not in session:
+        return redirect(url_for('Telas.login'))
+
+    if request.method == 'POST':
+        tipo_os = request.form['tipoos']
+        endereco = request.form['endereco']
+        prioridade = request.form['prioridade']
+        responsavel = request.form['responsavel']
+        horario = request.form['horario']
+        relato = request.form['relato']
+        causa = request.form['causa']
+        orientacao = request.form['orientacao']
+        validador = request.form['validador']
+
+        campoPotenciaOnu = request.form.get('potencia-onu')
+        modelo = request.form.get('modelo')
+        pppoe = request.form.get('pppoe')
+        gpon = request.form.get('gpon')
+        potenciaOlt = request.form.get('potenciaOlt')
+        Outros = request.form.get('Outros')
+        Temp = request.form.get('Temp')
+        dispositivos_sem_nternet = request.form.get('dispositivos-sem-internet')
+        alarmes_equipamento = request.form.get('alarmes-equipamento')
+
+        print(campoPotenciaOnu)
+
+        return render_template('homepage8.html', tipo_os=tipo_os, endereco=endereco, prioridade=prioridade,
+                               responsavel=responsavel, horario=horario, relato=relato, causa=causa,
+                               orientacao=orientacao, validador=validador, campoPotenciaOnu= campoPotenciaOnu, modelo=modelo,
+                               gpon = gpon, pppoe =pppoe, potenciaOlt=potenciaOlt, Outros=Outros,Temp=Temp, dispositivos_sem_nternet=dispositivos_sem_nternet, alarmes_equipamento=alarmes_equipamento  )
+    else:
+        return render_template('homepage8.html')
+
+
 
