@@ -89,10 +89,13 @@ def detalhes(protocolo):
 
     dados_nome_clientes = indisponibilidade.nomes_clientes.strip("[]").replace("'", "").split(',')
     dados_cod_clientes = indisponibilidade.codigos_clientes.strip("[]").replace("'", "").split(',')
+    dados_cto_clientes = indisponibilidade.cto_clientes.strip("[]").replace("'", "").split(',')
 
     dados_combinados = []
-    for codigo, nome in zip(dados_cod_clientes, dados_nome_clientes):
-        dados_combinados.extend([codigo, nome])
+    for codigo, nome, cto in zip(dados_cod_clientes, dados_nome_clientes, dados_cto_clientes):
+        dados_combinados.extend([codigo, nome, cto])
+
+
 
     dados_combinados.extend(dados_indis)
 
