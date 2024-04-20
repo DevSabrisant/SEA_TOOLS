@@ -53,8 +53,13 @@ function Homepage5(){
 function Homepage6() {
             window.location.href = "/homepage6";
 }
+
 function Homepage7() {
             window.location.href = "/homepage7";
+}
+
+function Homepage8() {
+            window.location.href = "/homepage8";
 }
 
  function validarFormulario() {
@@ -143,6 +148,102 @@ $(document).ready(function() {
         }
     });
 });
+
+
+$(document).ready(function(){
+    $("#myModal").modal({
+        backdrop: 'static', // Impede o fechamento do modal ao clicar fora dele
+        show: true
+    });
+
+    $(".modal-header .close").click(function(){
+        $("#myModal").modal('hide');
+    });
+
+    $("#copyButton").click(function(){
+        var modalText = ""; // Inicializa a variável para armazenar o texto formatado
+        // Itera sobre cada parágrafo dentro do modal
+        $("#myModal .modal-body p").each(function(){
+            modalText += $(this).text() + "\n"; // Adiciona o texto do parágrafo atual e uma quebra de linha
+        });
+        navigator.clipboard.writeText(modalText); // Copia o texto para a área de transferência
+        alert("Texto copiado com sucesso!"); // Mostra um alerta de confirmação
+    });
+});
+$(document).ready(function() {
+      $('#chkPotenciaOnu').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoPotenciaOnu').show();
+        } else {
+          $('#campoPotenciaOnu').hide();
+        }
+      });
+
+      $('#chkGpon').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoGpon').show();
+        } else {
+          $('#campoGpon').hide();
+        }
+      });
+
+      $('#chkPPPoE').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoPPPoE').show();
+        } else {
+          $('#campoPPPoE').hide();
+        }
+      });
+
+      $('#chkPotenciaOlt').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoPotenciaOlt').show();
+        } else {
+          $('#campoPotenciaOlt').hide();
+        }
+      });
+
+      $('#chkAlarmes').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoAlarmes').show();
+        } else {
+          $('#campoAlarmes').hide();
+        }
+      });
+
+      $('#chkocorre').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoOcorre').show();
+        } else {
+          $('#campoOcorre').hide();
+        }
+      });
+
+      $('#chkTemperatura').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoTemp').show();
+        } else {
+          $('#campoTemp').hide();
+        }
+      });
+
+      $('#chkModelo').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoModelo').show();
+        } else {
+          $('#campoModelo').hide();
+        }
+      });
+
+      $('#chkOutros').change(function() {
+        if ($(this).is(":checked")) {
+          $('#campoOutros').show();
+        } else {
+          $('#campoOutros').hide();
+        }
+      });
+      });
+
 
 
 

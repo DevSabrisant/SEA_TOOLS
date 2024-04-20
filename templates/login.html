@@ -12,7 +12,13 @@
 </head>
 <body>
     <img src="{{ url_for('static', filename='imagens/seatelecomimg.png') }}" alt="LOGO">
-    <label >FASE DE TESTE!</label>
+    <div class = "links">
+
+        <a href="https://github.com/CaioLir4" target="_blank">Caio Lira | </a>
+          <a href="https://github.com/ewdson7" target="_blank">Ewdson Tiago | </a>
+            <a href="https://github.com/DevSabrisant" target="_blank">Sabrina Santana</a>
+
+        </div><br>
     {% if message %}
         <p>{{ message }}</p>
     {% endif %}

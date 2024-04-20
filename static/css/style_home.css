@@ -80,6 +80,12 @@ button:hover {
 #botao6 {
     background-color: purple;
 }
+#botao7 {
+    background-color: grey;
+}
+#botao8 {
+    background-color: black;
+}
 
 #botao-logout {
     background-color: transparent;
