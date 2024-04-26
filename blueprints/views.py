@@ -44,7 +44,8 @@ def login():
                 session['username'] = username
                 objetos = Dash.select()
                 for objeto in objetos:
-                    objeto.logins += 1
+                    objeto.logins = objeto.logins + 1 if objeto.logins is not None else 1
+
                     objeto.save()
 
                 return redirect("/")
@@ -73,8 +74,10 @@ def homepage():
 
         objetos = Dash.select()
         for objeto in objetos:
-            objeto.homepage += 1
+            objeto.homepage = objeto.homepage + 1 if objeto.homepage is not None else 1
+
             objeto.save()
+
 
         return render_template("homepage.html", resultado=resultado)
     return render_template("homepage.html")
@@ -89,8 +92,9 @@ def homepage2():
 
         objetos = Dash.select()
         for objeto in objetos:
-            objeto.homepage2 += 1
+            objeto.homepage2 = objeto.homepage2 + 1 if objeto.homepage2 is not None else 1
             objeto.save()
+
 
         return  render_template("homepage2.html", resultadoVencimento = resultadoVencimento)
     return render_template("homepage2.html")
@@ -105,7 +109,8 @@ def homepage3():
 
         objetos = Dash.select()
         for objeto in objetos:
-            objeto.homepage3 += 1
+            objeto.homepage3 = objeto.homepage3 + 1 if objeto.homepage3 is not None else 1
+
             objeto.save()
 
         return render_template("homepage3.html", resultadoDesc = resultadoDesc)
@@ -120,7 +125,8 @@ def homepage4():
         resultado_cancelamento = Calculo_cancelamento(pAtual = request.form.get("Plano_cancelamento"), pVen = request.form.get("vencimento_cancelamento"), Data_Solicitacao = request.form.get("dataSolicitacao"),data_ati = request.form.get("data_ati"),multa=request.form.get("multa"))
         objetos = Dash.select()
         for objeto in objetos:
-            objeto.homepage4 += 1
+            objeto.homepage4 = objeto.homepage4 + 1 if objeto.homepage4 is not None else 1
+
             objeto.save()
 
         return render_template("homepage4.html", resultado_cancelamento=resultado_cancelamento)
@@ -140,7 +146,8 @@ def homepage5():
             r = Calculo_negociacao(campos_adicionais)
             objetos = Dash.select()
             for objeto in objetos:
-                objeto.homepage5 += 1
+                objeto.homepage5 = objeto.homepage5 + 1 if objeto.homepage5 is not None else 1
+
                 objeto.save()
             return render_template("homepage5.html", resultados=r)
 
