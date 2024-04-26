@@ -27,13 +27,15 @@
                     <tr>
                         <th>Código</th>
                         <th>Nome</th>
+                        <th>CTO</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i in range(0, len, 2) %}
+                    {% for i in range(0, len, 3) %}
                     <tr>
                         <td>{{ lista_clientes[i] }}</td>
                         <td>{{ lista_clientes[i + 1] }}</td>
+                        <td>{{ lista_clientes[i + 2] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

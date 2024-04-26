@@ -5,8 +5,7 @@ import os
 
 load_dotenv()
 
-#db = PostgresqlDatabase(os.getenv('DATABASE_URI', ''))
-
+db = PostgresqlDatabase(os.getenv('DATABASE_URI', ''))
 #db = PostgresqlDatabase('')
 
-db = SqliteDatabase('dbseatools.db')
+#db = SqliteDatabase('dbseatools.db')
