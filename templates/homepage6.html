@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage6.css') }}">
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Indisponibilidades</title>
+</head>
+<body>
+    <h1>Indisponibilidades</h1>
+
+    <div class="container">
+
+        {% for indisponibilidade in indisponibilidades if indisponibilidade.status %}
+            <div class="indisponibilidade">
+                <div >
+                    <p style="color: red;">Ocorrendo...</p>
+                </div>
+                <p>Protocolo: {{ indisponibilidade.protocolo }}</p>
+                <p>Cidade: {{ indisponibilidade.cidade }}</p>
+                <form action="/detalhes_indisponibilidade" method="POST">
+                    <input type="hidden" name="protocolo" value="{{ indisponibilidade.protocolo }}">
+                    <button type="submit">Detalhes</button>
+                </form>
+                <br>
+                {% if permissoes is defined and 'homepage6' in permissoes %}
+                <button class="botao-excluir" data-protocolo="{{ indisponibilidade.protocolo }}" data-cidade="{{ indisponibilidade.cidade }}">Excluir</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        {% for indisponibilidade in indisponibilidades if not indisponibilidade.status %}
+            <div class="indisponibilidade">
+                <div>
+                <p style="color: green;">Finalizada!</p>
+                </div>
+                <p>Protocolo: {{ indisponibilidade.protocolo }}</p>
+                <p>Cidade: {{ indisponibilidade.cidade }}</p>
+
+                <form action="/detalhes_indisponibilidade" method="POST">
+                    <input type="hidden" name="protocolo" value="{{ indisponibilidade.protocolo }}">
+                    <button type="submit">Detalhes</button>
+                </form>
+                <br>
+                {% if permissoes is defined and 'homepage6' in permissoes %}
+                <button class="botao-excluir" data-protocolo="{{ indisponibilidade.protocolo }}" data-cidade="{{ indisponibilidade.cidade }}">Excluir</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- Botão para a área do assistente -->
+    {% if permissoes is defined and 'homepage6' in permissoes %}
+        <button id="botao6" onclick="indisponibilidades()">Criar</button>
+    {% endif %}
+    <button id="botao7" onclick="Home()">Voltar</button>
+
+    <!-- Script JavaScript externo -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
