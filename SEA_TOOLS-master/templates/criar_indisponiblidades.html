@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_criar_indisponiblidades.css') }}">
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Criar indisponibilidade</title>
+</head>
+<body>
+    <h1>Upload de Arquivos</h1>
+    <form action="/criar_indisponiblidades" method="post" enctype="multipart/form-data">
+        <label for="cidade">Cidade:</label>
+        <select id="cidade" name="cidade" required>
+            <option value="">Selecionar</option>
+            <option value="Ananindeua">Ananindeua</option>
+            <option value="Augusto Corrêa">Augusto Corrêa</option>
+            <option value="Belém">Belém</option>
+            <option value="Benevides">Benevides</option>
+            <option value="Bragança">Bragança</option>
+            <option value="Capanema">Capanema</option>
+            <option value="Capitão Poço">Capitão Poço</option>
+            <option value="Castanhal">Castanhal</option>
+            <option value="Colares">Colares</option>
+            <option value="Curuçá">Curuçá</option>
+            <option value="Igarapé-Açu">Igarapé-Açu</option>
+            <option value="Inhangapi">Inhangapi</option>
+            <option value="Maracanã">Maracanã</option>
+            <option value="Marapanim">Marapanim</option>
+            <option value="Marituba">Marituba</option>
+            <option value="Ourém">Ourém</option>
+            <option value="Paragominas">Paragominas</option>
+            <option value="Primavera">Primavera</option>
+            <option value="Quatipuru">Quatipuru</option>
+            <option value="Salinópolis">Salinópolis</option>
+            <option value="Santa Izabel do Pará">Santa Izabel do Pará</option>
+            <option value="Santa Maria do Pará">Santa Maria do Pará</option>
+            <option value="Santo Antônio do Tauá">Santo Antônio do Tauá</option>
+            <option value="São Caetano de Odivelas">São Caetano de Odivelas</option>
+            <option value="São Domingos do Capim">São Domingos do Capim</option>
+            <option value="São Francisco do Pará">São Francisco do Pará</option>
+            <option value="São Miguel do Guamá">São Miguel do Guamá</option>
+            <option value="Terra Alta">Terra Alta</option>
+            <option value="Tracuateua">Tracuateua</option>
+            <option value="Vigia">Vigia</option>
+</select>
+
+        <br><br>
+        <label for="protocolo">Protocolo:</label>
+        <input type="text" id="protocolo" name="protocolo" required>
+
+        <div class="checkbox-container">
+             <label for="status">Ocorrendo?:</label>
+             <input type="checkbox" id="status" name="status" value="ativo" checked>
+        </div>
+        <label for="xls_file">Excel das CTOS:</label>
+        <input type="file" id="xls_file" name="xls_file" accept=".xlsx" multiple>
+        <br><br>
+        <label for="img_file">Foto Comunicado:</label>
+        <input type="file" id="img_file" name="img_file" accept=".png, .jpg">
+        <br><br>
+        <input type="submit" value="Enviar">
+        <button  class="botao-voltar" type="button" onclick="Homepage6()">Voltar</button>
+    </form>
+    <script>
+        {% if mensagem_erro %}
+            alert("{{ mensagem_erro }}");
+        {% endif %}
+    </script>
+</body>
+</html>

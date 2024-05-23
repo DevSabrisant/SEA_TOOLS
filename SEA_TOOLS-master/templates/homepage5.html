@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage5.css') }}">
+<link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Negociação</title>
+</head>
+<body>
+
+{% if error %}
+<script>
+    alert("{{ error }}");
+</script>
+{% endif %}
+
+
+<div class="container">
+
+    <h1>Negociação De Débitos</h1>
+
+    <form action="/homepage5" method="post" onsubmit="return ValidarNegociacao()">
+        <table id="excelTable">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <!--<th>Dias</th>
+                    <th>Multa</th>
+                    <th>Juros</th>
+                    <th>Cobrar</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="date" name="data" class="data"></td>
+                    <td><input type="text" name="valor" class="valor" oninput="validarNumero(this)"></td>
+                    <!--<td name="dias"></td>
+                    <td name="multa"></td>
+                    <td name="juros"></td>
+                    <td name="cobrar"></td>-->
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <button type="button" onclick="generateTable()">Numero de faturas</button>
+        <input type="number" id="rows" name="rows" min="1" value="1">
+
+        <button type="submit">Calcular</button>
+        <button type="button" onclick="Home()">Voltar</button>
+
+    </form>
+
+    <br>
+    <br>
+
+    <div class="table-wrapper">
+        <table class="resultados-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Dias</th>
+                    <th>Multa</th>
+                    <th>Juros</th>
+                    <th>Cobrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(0, resultados|length-3, 6) %}
+                <tr>
+                    <td>{{ resultados[0+i] }}</td>
+                    <td>{{ resultados[1+i] }}</td>
+                    <td>{{ resultados[2+i] }}</td>
+                    <td>{{ resultados[3+i] }}</td>
+                    <td>{{ resultados[4+i] }}</td>
+                    <td>{{ resultados[5+i] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Total a ser cobrado: {{ resultados[-1] }}</h2> <h2>Total em 2x: {{ resultados[-2] }}</h2> <h2>Total em 3x: {{ resultados[-3] }}</h2>
+
+
+</div>
+
+</body>
+</html>
