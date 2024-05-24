@@ -16,12 +16,4 @@ EXPOSE 5000
 # Comando para rodar a aplicação quando o contêiner for iniciado
 CMD ["python", "app.py"]
 
-#BUILD DA IMAGEM
-
-#    docker build -t dc-seatools .
-
-#COMANDO PARA RODAR E ACESSAR PELO BROWSER PELA PORTA 3000
-
-#    docker run -p 3000:5000 dc-seatools
-
 

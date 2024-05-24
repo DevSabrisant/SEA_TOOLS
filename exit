@@ -1,0 +1,273 @@
+[33mcommit 7e65fb2c449cc79759e5f40637405b668cb74ccc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 48ff7a0 b80b662
+Author: Santana_Dev <147533589+DevSabrisant@users.noreply.github.com>
+Date:   Thu May 23 21:50:54 2024 -0300
+
+    Merge branch 'master' of https://github.com/DevSabrisant/SEA_TOOLS
+
+[33mcommit 48ff7a08f25c40c43ac97222e2668a77dcc0e8b7[m
+Author: Santana_Dev <147533589+DevSabrisant@users.noreply.github.com>
+Date:   Thu May 23 21:41:38 2024 -0300
+
+    adicionado documentação da aplicação
+
+[33mcommit b80b66205766b2b8b342463a80be2a712f998951[m
+Merge: 509e08f 3b8b2eb
+Author: Santana_Dev <147533589+DevSabrisant@users.noreply.github.com>
+Date:   Wed May 22 21:14:31 2024 -0300
+
+    Merge branch 'master' of https://github.com/DevSabrisant/SEA_TOOLS
+
+[33mcommit 509e08fc5744f1498636ef824fdc3d23210be9b8[m
+Author: Santana_Dev <147533589+DevSabrisant@users.noreply.github.com>
+Date:   Wed May 22 21:09:24 2024 -0300
+
+    Subindo nova versão atualizada
+
+[33mcommit 3b8b2eb7c8e310211d2b4aa84985460c72bb401c[m
+Merge: c3d4495 728f1ab
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Sat May 4 14:11:01 2024 -0300
+
+    Merge pull request #27 from CaioLir4/Caio_Version
+    
+    Informações Bd
+
+[33mcommit 728f1ab2cdd9bdfdb501d03f895a9fd2fb94e809[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat May 4 14:09:57 2024 -0300
+
+    Informações sobre o BD
+
+[33mcommit df519dab91a824d97a49fc547f66601d53be25f8[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat May 4 14:01:16 2024 -0300
+
+    UP
+
+[33mcommit c3d44959a5317bd4b8b91ae49b923baab53868fd[m
+Merge: a60ca88 f7aa0ff
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Fri Apr 26 10:13:43 2024 -0300
+
+    Merge pull request #26 from CaioLir4/Caio_Version
+    
+    Docker
+
+[33mcommit f7aa0ffcfe7d865c58517f16b767cdcd97bbc076[m
+Merge: 93566dc a60ca88
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Fri Apr 26 10:13:34 2024 -0300
+
+    Merge branch 'master' into Caio_Version
+
+[33mcommit 93566dc3c2bca559e99bd9d900da3d73ba129d95[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Fri Apr 26 10:10:35 2024 -0300
+
+    Docker
+    
+    Adicionando arquivo dockerfile para rodar nos serviços internos da empresa
+
+[33mcommit a60ca8814a95e371cc16f8d7fe3e4a40ae6829ff[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 20 16:34:43 2024 -0300
+
+    Up no bd
+
+[33mcommit bced26a6fc43e073129b933a081748682f067895[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 20 16:11:27 2024 -0300
+
+    Indisponibilidades funcionando
+    
+    no devido xlxs da CTO deve ser excluido a primeira linha para que fiquem só as colunas.
+
+[33mcommit 2bf2dcfe6d98e1b815af5f862e42c5f9567efd5e[m
+Merge: c6a464d fcf820c
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Sat Apr 20 15:26:03 2024 -0300
+
+    Merge pull request #25 from CaioLir4/Caio_Version
+    
+    O.S
+
+[33mcommit fcf820cd2fe7f2bb2567bf58a387f70385aa6283[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 20 15:25:39 2024 -0300
+
+    O.S
+    
+    Adição da tela de O.S juntamente com atualização dos modais para funcionarem e copiarem os textos.
+
+[33mcommit c6a464d798f023646808a04be3d9d432de46d1d3[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Wed Apr 17 12:03:47 2024 -0300
+
+    Update app.py
+
+[33mcommit ecd062d8167952d55f87a1538c2bb37938754b60[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Mar 30 01:49:05 2024 -0300
+
+    Squashed commit of the following:
+    
+    commit 471cc5c5a92314fcf65aa72e87dc898bbec25213
+    Author: CaioLir4 <caiodevanalista@gmail.com>
+    Date:   Sat Mar 30 01:33:21 2024 -0300
+    
+        s
+    
+    commit 7af14d5004755daf50e9b7ee1f806875bb03b1e7
+    Author: CaioLir4 <caiodevanalista@gmail.com>
+    Date:   Sat Mar 30 01:07:55 2024 -0300
+    
+        up
+    
+    commit 2a6ffb0eefc0df722ce993392e9bb064f9d53316
+    Author: CaioLir4 <caiodevanalista@gmail.com>
+    Date:   Sat Mar 30 01:06:18 2024 -0300
+    
+        up
+    
+    commit c1bf99de26d92a92aa677f0485c4202d07ce20bd
+    Author: CaioLir4 <caiodevanalista@gmail.com>
+    Date:   Sat Mar 30 00:28:32 2024 -0300
+    
+        Update
+    
+    commit 1dc4a5beffcf210bed1ea2de8e8d0d8107ff71eb
+    Author: CaioLir4 <caiodevanalista@gmail.com>
+    Date:   Fri Mar 29 23:20:34 2024 -0300
+    
+        Upgrade
+    
+        Instalando a dependência pltoly
+    
+    commit 0ea240dc048fdde06a92d47aceb7a79896341bc6
+    Merge: 7b46c94 5e5780e
+    Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+    Date:   Fri Mar 29 23:07:59 2024 -0300
+    
+        Merge pull request #24 from CaioLir4/Caio_Version
+    
+        Upgrade
+    
+    commit 7b46c94dd48cc30c89f7376d44d6c1846f49a5b2
+    Merge: 14c8f30 b1682fb
+    Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+    Date:   Fri Mar 29 23:00:27 2024 -0300
+    
+        Merge pull request #23 from CaioLir4/Caio_Version
+    
+        Update requirements.txt
+    
+    commit 14c8f30275767c5c1361a00d98bab7e44374c0ce
+    Merge: 4ec2fda 4a1eb0e
+    Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+    Date:   Fri Mar 29 22:59:24 2024 -0300
+    
+        Merge pull request #22 from CaioLir4/Caio_Version
+    
+        UPDATE DE TUDÃO
+
+[33mcommit fe25142c42a4b627400cfed6ea6b7b358f37e409[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Wed Apr 17 00:24:43 2024 -0300
+
+    up
+
+[33mcommit a907e651d095a3b78bbb60cd942e9794d7e32c78[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Wed Apr 17 00:20:54 2024 -0300
+
+    Comentario Up
+    
+    Adição de comentários padrão da reclamação.
+
+[33mcommit 6e69ddbfd488367fe0e50db34f2b77b4a524a309[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 13 03:20:02 2024 -0300
+
+    Update views.py
+
+[33mcommit a81991f677960dbc0ed99c36f0a864e553be41ec[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 13 03:14:52 2024 -0300
+
+    Update .env
+
+[33mcommit b582fd2ec257b2e4631b8de561057c6e446871f2[m
+Merge: 4d4a75e 98b5dba
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 13 03:03:53 2024 -0300
+
+    Merge branch 'master' of https://github.com/CaioLir4/SEA_TOOLS
+
+[33mcommit 4d4a75ef9932986e606cce95c7ca9ac121267750[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Apr 13 03:03:38 2024 -0300
+
+    Up
+
+[33mcommit 98b5dba5914acb10d56f96d5c438d5437188f147[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Fri Apr 12 15:17:36 2024 -0300
+
+    Update mudar_venc.py
+
+[33mcommit 1012e47f1a3be268e4b47d5e7873515812543c36[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Thu Apr 11 15:18:38 2024 -0300
+
+    Delete database/models/__pycache__ directory
+
+[33mcommit 49cf7b4c97243f2f7384f42a1c749a2075cf86e0[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Thu Apr 11 15:17:54 2024 -0300
+
+    Delete blueprints/__pycache__ directory
+
+[33mcommit a6843b5ef8f336793305fb3f8fe5837a0e79da80[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Thu Apr 4 17:34:24 2024 -0300
+
+    Create README.md
+
+[33mcommit 93c393f9be18eca3386718113b2b0aca01573e2c[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Mar 30 14:09:37 2024 -0300
+
+    Update .env
+
+[33mcommit 94a482a73e9a7662ed047b9719c4c92a40517b25[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Mar 30 01:55:27 2024 -0300
+
+    up
+
+[33mcommit db04b6f6cc788bef9904e6c9ba4e2176273b23b8[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Sat Mar 30 01:50:42 2024 -0300
+
+    Delete database/__pycache__ directory
+
+[33mcommit ac7124c3448563a7e9ac999b5fd2ddfa959076ba[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Sat Mar 30 01:50:30 2024 -0300
+
+    Delete __pycache__ directory
+
+[33mcommit 46c52ee3b0453766cd84ecbcd2e3bafc38d7ca7c[m
+Author: CAIO <119272627+CaioLir4@users.noreply.github.com>
+Date:   Sat Mar 30 01:50:19 2024 -0300
+
+    Delete .env
+
+[33mcommit 471cc5c5a92314fcf65aa72e87dc898bbec25213[m
+Author: CaioLir4 <caiodevanalista@gmail.com>
+Date:   Sat Mar 30 01:33:21 2024 -0300
+
+    s
+
+[33mcommit 
