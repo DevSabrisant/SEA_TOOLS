@@ -1,0 +1,5 @@
+FlaskApp/
+node_modules/
+__pycache__/
+dbsea.db/
+.env/
