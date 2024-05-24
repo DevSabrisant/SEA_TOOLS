@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ordem de Serviço</title>
+  <link rel="icon" href="static/faviconsea.png" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage8.css') }}">
+  <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <style>
+    body {
+      background-color: #000047; /* Define a cor de fundo diretamente no HTML */
+    }
+  </style>
+</head>
+
+
+<body >
+  <div class="container">
+    <form id="formulario" action="/homepage8" method="post">
+      <h1 class="text-center mb-4">GERADOR DE O.S</h1>
+      <div class="form-group">
+        <label for="tipoos">Tipo de O.S:</label>
+        <select id="tipoos" name="tipoos" class="form-control" required>
+          <option value="">Selecione</option>
+          <option value="suporte">SUPORTE - SEM INTERNET</option>
+          <option value="suporteint">SUPORTE-INTERNET LENTA</option>
+          <option value="manutencao">MANUTENÇÃO</option>
+          <option value="recolhimento">RECOLHIMENTO DE COMODATO</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <textarea id="endereco" name="endereco" rows="4" class="form-control" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="prioridade">Prioridade:</label>
+        <select id="prioridade" name="prioridade" class="form-control" required>
+          <option value="">Selecione</option>
+          <option value="PADRÃO">PADRÃO</option>
+          <option value="REINCIDENTE">REINCIDENTE</option>
+          <option value="REVERSÃO DE CANCELAMENTO">REVERSÃO DE CANCELAMENTO</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="responsavel">Responsável que receberá a equipe:</label>
+        <input type="text" id="responsavel" name="responsavel" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="horario">Melhor horário para atendimento:</label>
+        <input type="text" id="horario" name="horario" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="relato">Relato:</label>
+        <textarea id="relato" name="relato" rows="3" class="form-control" placeholder="Relatar o problema identificado"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="causa">Possível causa:</label>
+        <textarea id="causa" name="causa" rows="2" class="form-control" placeholder="Somente se tiver identificado"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="orientacao">Orientação para os técnicos:</label>
+        <textarea id="orientacao" name="orientacao" rows="3" class="form-control" placeholder="O que os técnicos de campo precisam realizar"></textarea>
+      </div>
+
+      <div class="checkbox">
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkPotenciaOnu"> Potência ONU </label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkGpon" value="sim"> GPON</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkPPPoE" value="sim"> PPPoE</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkPotenciaOlt"> Potência OLT</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkAlarmes"> Alarmes do equipamento</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkocorre"> Dispositivos em que ocorre</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkTemperatura"> Temperatura</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkModelo"> Modelo do equipamento</label>
+        <label class="checkla"><input class="checkin" type="checkbox" id="chkOutros"> Outros</label> <br><br>
+
+
+        <div id="campoPotenciaOnu" style="display: none;" class="form-group">
+          <label id="nome-potencia-onu" for="potencia-onu" class="hidden">POTÊNCIA ONU:</label>
+          <input type="text" id="potencia-onu" name="potencia-onu" class="form-control">
+        </div>
+
+
+        <div id="campoPotenciaOlt" style="display: none;" class="form-group">
+          <label for="potenciaOlt">Potência OLT:</label>
+          <input type="text" id="potenciaOlt" name="potenciaOlt" class="form-control">
+        </div>
+
+        <div id="campoGpon" style="display: none;" class="form-group">
+          <label for="gpon">GPON:</label>
+          <input type="text" id="gpon" name="gpon" class="form-control">
+        </div>
+
+        <div id="campoPPPoE" style="display: none;" class="form-group">
+          <label for="pppoe">PPPoE:</label>
+          <input type="text" id="pppoe" name="pppoe" class="form-control">
+        </div>
+
+        <div id="campoModelo" style="display: none;" class="form-group">
+          <label for="modelo">Modelo do equipamento:</label>
+          <input type="text" id="modelo" name="modelo" class="form-control">
+        </div>
+
+        <div id="campoAlarmes" style="display: none;" class="form-group">
+          <label id="nome-alarmes-equipamento" for="alarmes-equipamento" class="hidden">Alarmes do equipamento:</label>
+          <input type="text" id="alarmes_equipamento" name="alarmes-equipamento" class="form-control">
+        </div>
+
+        <div id="campoOcorre" style="display: none;" class="form-group">
+          <label id="nome-dispositivos-sem-internet" for="dispositivos-sem-internet" class="hidden">Dispositivos em que ocorre:</label>
+          <input type="text" id="dispositivos_sem_internet" name="dispositivos-sem-internet" class="hidden">
+        </div>
+
+        <div id="campoTemp" style="display: none;" class="form-group">
+          <label for="Temp">Temperatura:</label>
+          <input type="text" id="Temp" name="Temp" placeholder="Temperatura registrada no equipamento" class="form-control">
+        </div>
+
+        <div id="campoOutros" style="display: none;" class="form-group">
+          <label for="Outros">Outros:</label>
+          <input type="text" id="Outros" placeholder="Outros detalhes" name="Outros" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="validador">Validador:</label>
+        <input type="text" id="validador" name="validador" class="form-control">
+      </div>
+
+      <div class="form-group text-center">
+        <button id="btnConcluir" class="btn btn-primary">Concluir</button>
+        <button id="btnVoltar" class="btn btn-primary" onclick="Home()">Voltar</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Modal -->
+  {% if request.method == 'POST' %}
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ordem de Serviço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>TIPO DE O.S:</strong> {{ tipo_os }}</p>
+          <p><strong>Endereço:</strong> {{ endereco }}</p>
+          <p><strong>Prioridade:</strong> {{ prioridade }}</p>
+          <p><strong>Responsável que receberá a equipe:</strong> {{ responsavel }}</p>
+          <p><strong>Melhor horário para atendimento:</strong> {{ horario }}</p>
+          <p><strong>Relato:</strong> {{ relato }}</p>
+          <p><strong>Possível causa:</strong> {{ causa }}</p>
+          <p><strong>Orientação para os técnicos:</strong> {{ orientacao }}</p>
+
+          <p><strong>Outras informações:</strong></p>
+          <ul>
+            {% if campoPotenciaOnu %}
+            <li><strong>Potência ONU:</strong> {{ campoPotenciaOnu }}</li>
+            {% endif %}
+            {% if gpon %}
+            <li><strong>GPON:</strong> {{ gpon }}</li>
+            {% endif %}
+
+            {% if pppoe %}
+            <li><strong>PPPoE:</strong> {{ pppoe }}</li>
+            {% endif %}
+
+            {% if modelo %}
+            <li><strong>MODELO DO EQUIPAMENTO:</strong> {{ modelo }}</li>
+            {% endif %}
+
+            {% if potenciaOlt %}
+            <li><strong>Potência OLT:</strong> {{ potenciaOlt }}</li>
+            {% endif %}
+
+            {% if alarmes_equipamento %}
+            <li><strong>Alarmes do equipamento:</strong> {{ alarmes_equipamento }}</li>
+            {% endif %}
+
+            {% if dispositivos_sem_nternet %}
+            <li><strong>Dispositivos em que ocorre:</strong> {{ dispositivos_sem_nternet }}</li>
+            {% endif %}
+
+            {% if Temp %}
+            <li><strong>Temperatura:</strong> {{ Temp }}</li>
+            {% endif %}
+
+            {% if Outros %}
+            <li><strong>Outros:</strong> {{ Outros }}</li>
+            {% endif %}
+
+          </ul>
+          <p><strong>Validador:</strong> {{ validador }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="copyButton" data-dismiss="modal">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

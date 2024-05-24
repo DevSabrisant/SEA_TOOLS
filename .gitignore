@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 FlaskApp/
 node_modules/
 __pycache__/
 dbsea.db/
+=======
+node_modules/
+__pycache__/
+>>>>>>> b80b66205766b2b8b342463a80be2a712f998951
 .env/

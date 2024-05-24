@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_dashboard.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <title>{{ dados.titulo }}</title>
+</head>
+<body>
+    <header>
+        <!--<div class="logo">
+            <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo">
+        </div>-->
+        <h1>{{ dados.titulo }}</h1>
+    </header>
+
+    <main>
+    <section id="grafico">{{ grafico_html | safe }}</section>
+
+    <section class="info-container" style="display: flex;">
+        <div style="flex: 1;">
+            <p>Sol. Plano: {{ dados.homepage}}</p>
+            <p>Sol. Vencimento: {{ dados.homepage2 }}</p>
+            <p>Sol. Descontos: {{ dados.homepage3 }}</p>
+        </div>
+        <div style="flex: 1;">
+            <p>Sol. Negociações: {{ dados.homepage4 }}</p>
+            <p>Sol. Cancelamento: {{ dados.homepage5 }}</p>
+            <p>Acessos: {{ dados.logins }}</p>
+        </div>
+    </section>
+</main>
+
+
+</body>
+</html>

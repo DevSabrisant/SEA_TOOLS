@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentário Reclamação</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <link rel="shortcut icon" href="../static/imagens/faviconsea.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage7.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Comentário Reclamação</h2>
+    <form action="/homepage7" method="post">
+        <div class="form-group">
+            <label for="relato_cliente">Relato do Cliente:</label>
+            <textarea name="relato_cliente" id="relato_cliente" rows="4" cols="50" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="potencia">Potência (ONU/PON):</label>
+            <input type="text" name="potencia" id="potencia" required>
+        </div>
+
+        <div class="form-group">
+            <label for="canal">Canal (2.4G):</label>
+            <select name="canal" id="canal">
+                <option value="Auto">Auto</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="banda">Canal (5G):</label>
+            <select name="banda" id="banda">
+                <option value="Auto">Auto</option>
+                <option value="36">36</option>
+                <option value="40">40</option>
+                <option value="44">44</option>
+                <option value="48">48</option>
+                <option value="52">52</option>
+                <option value="56">56</option>
+                <option value="60">60</option>
+                <option value="64">64</option>
+                <option value="100">100</option>
+                <option value="104">104</option>
+                <option value="108">108</option>
+                <option value="112">112</option>
+                <option value="116">116</option>
+                <option value="120">120</option>
+                <option value="124">124</option>
+                <option value="128">128</option>
+                <option value="132">132</option>
+                <option value="136">136</option>
+                <option value="140">140</option>
+                <option value="149">149</option>
+                <option value="153">153</option>
+                <option value="157">157</option>
+                <option value="161">161</option>
+                <option value="165">165</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="dns">DNS:</label><br>
+            <input type="checkbox" name="dns" value="1.1.1.1"> 1.1.1.1<br>
+            <input type="checkbox" name="dns" value="1.0.0.1"> 1.0.0.1<br>
+            <input type="checkbox" name="dns" value="8.8.8.8"> 8.8.8.8<br>
+            <input type="checkbox" name="dns" value="8.8.4.4"> 8.8.4.4<br>
+            <input type="checkbox" name="dns" value="208.67.222.222"> 208.67.222.222<br>
+            <input type="checkbox" name="dns" value="208.67.220.220"> 208.67.220.220<br>
+        </div>
+
+        <div class="form-group">
+            <label for="upnp">UPNP:</label>
+            <select name="upnp" id="upnp">
+                <option value="SIM">SIM</option>
+                <option value="NÃO">NÃO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sntp">SNTP:</label>
+            <select name="sntp" id="sntp">
+                <option value="SIM">SIM</option>
+                <option value="NÃO">NÃO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ipv6">IPv6:</label>
+            <select name="ipv6" id="ipv6">
+                <option value="SIM">SIM</option>
+                <option value="NÃO">NÃO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="observacoes">Observações:</label>
+            <textarea name="observacoes" id="observacoes" rows="4" cols="50"></textarea>
+        </div>
+
+        <div class="button-container">
+            <input type="submit" value="Enviar" class="btn">
+            <button id="botao7" onclick="Home()" class="btn">Voltar</button>
+        </div>
+    </form>
+
+   {% if request.method == 'POST': %}
+<div class="modal fade" id="myModal" data-backdrop="static"> <!-- Adicionando a opção data-backdrop="static" -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Reclamação</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button> <!-- Botão de fechar (X) -->
+            </div>
+            <div class="modal-body">
+                <p><strong>Relato do Cliente:</strong> {{ relato_cliente }}</p>
+                <p><strong>Potência (ONU/PON):</strong> {{ potencia }}</p>
+                <p><strong>Canal (2.4g):</strong> {{ canal }}</p>
+                <p><strong>Canal (5g):</strong> {{ banda }}</p>
+                <p><strong>DNS:</strong> {% for d in dns %} / {{ d }} {% endfor %}</p>
+                <p><strong>UPNP:</strong> {{ upnp }}</p>
+                <p><strong>SNTP:</strong> {{ sntp }}</p>
+                <p><strong>IPv6:</strong> {{ ipv6 }}</p>
+                <p><strong>Observações:</strong> {{ observacoes }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="copyButton" data-dismiss="modal">Copiar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
